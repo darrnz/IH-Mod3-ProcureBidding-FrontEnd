@@ -7,7 +7,7 @@ const handleAsync = async asynFn => {
         result = data
     } catch (error) {
         const { data } = error.response
-        result = data
+        result = data 
     }
     return result
 }

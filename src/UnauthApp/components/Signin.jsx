@@ -2,17 +2,47 @@ import React, { useEffect, useState } from 'react'
 import { Box, Input, Button, Radio, RadioGroup, Stack } from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
+import handleAsync from '../../utils/handleAsync'
 import AUTH_SERVICE from '../../services/auth'
 
 export default function Signin() {
-    const [form, handleInput] = useForm()
-    
-    const [radioValue, setRadioValue] = useState({})
-console.log(form)
+   
+
+
+    const [value, setValue] = React.useState('Admin')
+    console.log(value)
+
+    function setrol(value) {
+        setInfoSignup({...infoSignup,role:value})
+    }
+
+    const [infoSignup, setInfoSignup] = useState({
+        /* role:'', */
+        firstName: '',
+        lastName: '',
+        email: '',
+        companyName:'',
+        address:'',
+        zipCode:'',
+        rfc:'',
+    })
+    console.log(infoSignup)
+    const handleChange= (e) =>{
+        e.preventDefault()
+        setInfoSignup({
+            ...infoSignup,
+            [e.target.name]: e.target.value
+        })
+        console.log(infoSignup)
+        
+    }
+    console.log(infoSignup)
+
     const history = useHistory()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const response = await AUTH_SERVICE.SIGNUP(form).catch( err => console.log(err))
+        const response = await AUTH_SERVICE.SIGNUP(infoSignup).catch( error => console.log(error))
         if(response) {
             history.push('/')
         } else {
@@ -22,70 +52,69 @@ console.log(form)
 
     return (
         <Box as='main' d='flex' w='100vw' h='100vh' alignContent='center' justifyContent='center'>
-            <Box as='form' d='flex' flexDirection='column' justifyContent='center' alignContent='center'>
-                <RadioGroup name='role' onChange={setRadioValue}  colorScheme="green">
+            <Box onSubmit={ handleSubmit } as='form' d='flex' flexDirection='column' justifyContent='center' alignContent='center'>
+                <RadioGroup name='role'   colorScheme="green">{/* onChange={(value) => setrol(value)} */}
                     <Stack direction='row' d='flex' alignContent='center' justifyContent='center' >
-                        <Radio value='Admin' colorScheme="green" defaultChecked='true'>
+                        <Radio name='role' value='Admin' colorScheme="green" defaultChecked='true'>
                             Client
                         </Radio>
-                        <Radio value='Vendor' colorScheme="red">
+                        <Radio name='role' value='Vendor' colorScheme="red">
                             Vendor
                         </Radio>
                     </Stack>
                 </RadioGroup>
-                <Input type='text' d='' name='role' value={radioValue} onChange={handleInput} />
                 <Input 
                     type='text'
                     name='firstName'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='Name'
                 />
                 <Input 
                     type='text'
                     name='lastName'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='Last name or family name'
                 />
                 <Input 
                     type='email'
                     name='email'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='name@email.com'
                 />
                 <Input 
                     type='password'
                     name='password'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='*********'
                 />
                 <Input 
                     type='text'
                     name='companyName'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='Commercial company name'
                 />
                 <Input 
                     type='text'
                     name='address'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='Address'
                 />
                 <Input 
                     type='text'
                     name='zipCode'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='Zip Code'
                 />
                 <Input 
                     type='text'
                     name='rfc'
-                    onChange={ handleInput }
+                    onChange={ (e)=> handleChange(e) }
                     placeholder='RFC'
                 />
 
                 <Button 
                     type='submit'
-                    onClick={ handleSubmit }
+                    
                 >SignIn</Button>    
             </Box>
         </Box>

@@ -1,10 +1,15 @@
+import { Box } from '@chakra-ui/react'
 import React from 'react'
 import { useAuth } from '../../AuthContext'
+import {  Input, Button, Radio, RadioGroup, Stack } from '@chakra-ui/react'
+
 
 export default function User() {
     return (
-        <div>
-            <p>Este es el perfil del Purchaser</p>
-        </div>
+        
+            <Box >
+                Hola
+            </Box>
+        
     )
 }

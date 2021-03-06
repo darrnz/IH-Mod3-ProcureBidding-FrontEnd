@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
     async function getUser() {
         const response = await handleAsync(AUTH_SERVICE.LOGGED)
-        if(response.msg === "You can's access, please try again") {
+        if(response.error === "You can't access, please try again") {
             dispatch({ type: 'SET_USER', payload: null })
         } else {
             dispatch({ type: 'SET_USER', payload: response.user })

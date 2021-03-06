@@ -13,12 +13,12 @@ export default function Login() {
     const history = useHistory()
     const[,dispatch] = useAuth()
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e =>{
         e.preventDefault()
-        const { user } = await handleAsync(() => AUTH_SERVICE.LOGIN(form))
-            if(user) {
-                dispatch({ type: 'LOGIN', payload: { user } })
-            }
+        const {user} = await handleAsync(()=>AUTH_SERVICE.LOGIN(form))
+            if(user){
+            dispatch({type: 'LOGIN', payload: {user}})
+            } 
             else {
                 toast({
                     position: 'top',
