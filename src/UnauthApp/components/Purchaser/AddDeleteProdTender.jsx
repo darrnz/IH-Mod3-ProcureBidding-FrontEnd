@@ -8,7 +8,7 @@ import ListProducts from './ListProducts'
 import clienteAxios from '../../../services/axios'
 import { useParams } from 'react-router-dom'
 import TenderContext from '../../../context/tenders/TenderContext'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, useFieldArray  } from 'react-hook-form'
 
 
 export default function AddDeleteProdTender() {
@@ -60,7 +60,7 @@ export default function AddDeleteProdTender() {
                     {
                                 productsList.map((e,id) => {
                                     return(
-                                        <ListItem key={e._id} d='flex' justifyContent='spaceBetween'>
+                                        <ListItem key={id} d='flex' justifyContent='spaceBetween'>
                                             <Text>{e.idLocal}</Text>
                                             <Text>{e.productDescription}</Text>
                                             <Box as='form' d='flex' onSubmit={ handleSubmit(onClickAdd)}>
@@ -79,9 +79,9 @@ export default function AddDeleteProdTender() {
                                                     />
                                                 </FormControl>  
                                                 {/* <input type="number" placeholder="quantity" name="quantity1" ref={register} /> */}
-                                                <input type='text' defaultValue={e._id} name='idProduct' ref={register}  />
+                                                <input type='text' value={e._id} name='idProduct' ref={register()}  />
                                                 {/* <Input type='text' value={e._id} name='idProduct' onChange={valueId => {setid(valueId)}}/> */}
-                                                <Button type='submit' >Añadir producto</Button>
+                                                <Button ml={30} type='submit' >Añadir </Button>
                                             </Box>
                                         </ListItem>
                                         )

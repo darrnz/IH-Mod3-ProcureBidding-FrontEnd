@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import Profile from './components/Profile'
@@ -32,3 +32,4 @@ export default function AuthApp() {
         </>
     )
 }
+ */
