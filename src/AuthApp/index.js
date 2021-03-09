@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { useAuth } from '../AuthContext'
+import { useAuth } from '../context/AuthContext'
 import Profile from './components/Profile'
 import User from './components/User'
 import PrivateRoute from './components/PrivateRoute'

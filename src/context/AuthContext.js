@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useEffect, useContext } from 'react'
-import handleAsync from './utils/handleAsync'
-import Loader from './components/layout/Loader'
-import AUTH_SERVICE from './services/auth'
+import handleAsync from '../utils/handleAsync'
+import Loader from '../components/layout/Loader'
+import AUTH_SERVICE from '../services/auth'
 
 export const AuthStateContext = createContext({})
 

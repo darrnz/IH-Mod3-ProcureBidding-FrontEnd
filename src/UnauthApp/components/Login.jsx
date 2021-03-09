@@ -4,12 +4,12 @@ import { Link, useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import AUTH_SERVICE from '../../services/auth'
 import handleAsync from '../../utils/handleAsync'
-import { useAuth } from '../../AuthContext'
+import { useAuth } from '../../context/AuthContext'
 
 export default function Login() {
 
     const [form, handleInput] = useForm()
-    const toast = useToast()
+    const toast = useToast() //chakra
     const history = useHistory()
     const[,dispatch] = useAuth()
 

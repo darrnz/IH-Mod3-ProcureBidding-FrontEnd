@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useHistory, Route } from 'react-router-dom'
-import { useAuth } from '../../AuthContext'
+import { useAuth } from '../../context/AuthContext'
 
 export default function PrivateRoute(props) {
 
