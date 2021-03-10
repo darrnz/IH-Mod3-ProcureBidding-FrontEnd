@@ -8,12 +8,13 @@ import clienteAxios from '../../../services/axios'
 import { useParams } from 'react-router-dom'
 import TenderContext from '../../../context/tenders/TenderContext'
 import useForm from '../../../hooks/useForm'
+import AddDeleteVendorTender from './AddDeleteVendorTender'
 
 export default function AddTender() {
 
     const ctxTender = useContext(TenderContext)
-    const { tenderProds, addProductTender, 
-            newTenderId, productsTenForm, 
+    const { tenderProds, addProductTender, tenderVendor, existVendors,
+            newTenderId, productsTenForm, vendorsTenForm,
             tenderInfo, createTender, ListProducts,listProductsInv } = ctxTender
 
     const [form, handleInput] = useForm()
@@ -23,6 +24,7 @@ export default function AddTender() {
         console.log(form)
         e.preventDefault()
         listProductsInv()
+        existVendors()
         createTender(form)
         
     }
@@ -80,7 +82,10 @@ export default function AddTender() {
 
             <Box as='div' >
                 {
-                    productsTenForm? <AddDeleteProdTender/> : ""
+                    productsTenForm? <AddDeleteProdTender/> : tenderProds != null? tenderProds.map((e,id )=> { return(<p key={id}>{e.productDescription}</p>)}):""
+                }
+                {
+                    vendorsTenForm? <AddDeleteVendorTender/> : ""
                 }
                 
             </Box>

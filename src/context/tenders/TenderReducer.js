@@ -2,7 +2,7 @@ import{
     LIST_TENDERS, TENDER_DETAILS, CREATE_TENDER,
     ADD_PRODUCT_TENDER, DELETE_PRODUCT_TENDER,
     ADD_VENDOR_TENDER, DELETE_VENDOR_TENDER,
-    LIST_VENDOR_TENDER,LIST_PRODS,PUSH_ELEM
+    LIST_PRODS,PUSH_ELEM,LIST_VENDORS
 } from '../../types'
 
 export default (state, action) => {
@@ -11,6 +11,12 @@ export default (state, action) => {
                 return{
                     ...state,
                     listProducts: [...action.payload]
+                }
+        case LIST_VENDORS: 
+            console.log(action.payload)
+                return{
+                    ...state,
+                    listvendors: [state.listvendors, ...action.payload]
                 }
         case LIST_TENDERS:
                 return {
@@ -27,7 +33,7 @@ export default (state, action) => {
             return {
                 ...state,
                 newTenderId: action.payload._id,
-                productsTenForm:true,
+                productsTenForm: true,
                 tenderInfo: action.payload
             }
         case PUSH_ELEM:
@@ -39,17 +45,34 @@ export default (state, action) => {
         case ADD_PRODUCT_TENDER: 
             return {
                 ...state,
-                tender:[action.payload]
+                tender:[action.payload],
+                productsTenForm: false,
+                vendorsTenForm:true
             }
+            
         case DELETE_PRODUCT_TENDER:
-            /* return {
+            return {
                 ...state,
-                tenderProds: state.tenderProds.filter(elem => elem.idLocal !== action.payload),
-                listProducts: [...state.listProducts, ]
-            } */
+                tenderProds: state.tenderProds.filter(elem => elem.idLocal !== action.payload.idLocal),
+                listProducts: [action.payload, ...state.listProducts ]
+            }
         case ADD_VENDOR_TENDER:
+            return {
+                ...state,
+                tenderVendor: [action.payload, ...state.tenderVendor ],
+                listvendors: state.listvendors.filter(elem => elem._id !== action.payload._id)
+            }
         case DELETE_VENDOR_TENDER:
-        case LIST_VENDOR_TENDER:
+            return {
+                ...state,
+                tenderVendor: state.tenderVendor.filter(elem => elem._id !== action.payload._id),
+                listvendors: [action.payload, ...state.listvendors ]
+            }
+
+/*         case LIST_VENDOR_TENDER:
+            return {
+
+            } */
             
         default:
             return state;
