@@ -30,7 +30,6 @@ export default function AddDeleteProdTender() {
         )
     }
 
-console.log(listProducts)
     useEffect(() => {
         
         
@@ -48,7 +47,7 @@ console.log(listProducts)
         let pop = listProducts.findIndex(elem => 
             elem.idLocal === idc
         )
-        console.log(pop)
+
         listProducts.splice(pop,1)
         setQuantitySet(1)    
     }
@@ -58,15 +57,14 @@ console.log(listProducts)
         
         addProductTender(tenderProds) 
         /* setForm({}) */ 
-        console.log(tenderProds)
-        console.log(e)
+
     }
 
     const onClickDelete = (e,idc) =>{
         e.preventDefault()
         deleteProductTender(idc)
     }
-    console.log(tenderProds)
+
 
     return (
             <Box as='div' mx={30} d='flex' flexDirection='row' justifyContent='space-between'>
@@ -82,7 +80,7 @@ console.log(listProducts)
                                             <Box as='form'>
                                             <Input type='text' name='idc' value={id} readOnly/>
                                             <input type='number' defaultValue={1} onChange={(e) =>handleQty(e)} />
-                                            <Button ml={30} value={e.idLocal} type='submit'onClick={(ev) => selectPro(ev,e.idLocal)} >Añadir </Button>
+                                            <Button ml={30} value={e.idLocal} type='submit' onClick={(ev) => selectPro(ev,e.idLocal)} >Añadir </Button>
                                             </Box>
                                         </ListItem>
                                         )

@@ -2,11 +2,39 @@ import{
     LIST_TENDERS, TENDER_DETAILS, CREATE_TENDER,
     ADD_PRODUCT_TENDER, DELETE_PRODUCT_TENDER,
     ADD_VENDOR_TENDER, DELETE_VENDOR_TENDER,
-    LIST_PRODS,PUSH_ELEM,LIST_VENDORS
+    LIST_PRODS,PUSH_ELEM,LIST_VENDORS, SAVE_VENDOR_TENDER,
+    CLOSE_AND_CLEAR_TENDER, NEW_TENDER, SAVE_AND_SEND_TENDER
 } from '../../types'
 
 export default (state, action) => {
     switch (action.type) {
+
+        case NEW_TENDER:
+            return {
+                ...state,
+                tenderForm: true,
+                productsTenForm: false,
+                vendorsTenForm: false,
+                listProducts:[],
+                newTenderId:'',
+                tenderVendor: [],
+                listvendors: [],
+                tenderProds: [],
+            }
+        case CLOSE_AND_CLEAR_TENDER:
+        case SAVE_AND_SEND_TENDER:
+            return {
+                ...state,
+                tenderForm: false,
+                productsTenForm: false,
+                vendorsTenForm: false,
+                listProducts:[],
+                newTenderId:'',
+                tenderVendor: [],
+                listvendors: [],
+                tenderProds: [],
+            }
+
         case LIST_PRODS: 
                 return{
                     ...state,
@@ -16,7 +44,7 @@ export default (state, action) => {
             console.log(action.payload)
                 return{
                     ...state,
-                    listvendors: [state.listvendors, ...action.payload]
+                    listvendors: [...action.payload]
                 }
         case LIST_TENDERS:
                 return {
@@ -69,10 +97,11 @@ export default (state, action) => {
                 listvendors: [action.payload, ...state.listvendors ]
             }
 
-/*         case LIST_VENDOR_TENDER:
+        case SAVE_VENDOR_TENDER:
             return {
-
-            } */
+                ...state,
+                vendorsTenForm: false
+            }
             
         default:
             return state;

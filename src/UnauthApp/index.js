@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+/* import React,{useContext} from 'react'
 import { Switch, Route, Redirect, Link} from 'react-router-dom'
 import Login from './components/Login'
 import Signin from './components/Signin'
@@ -12,13 +12,13 @@ import {
     Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent,MobileNav, DesktopNav,
     useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
 import Profile from '../AuthApp/components/Profile'
-  /* import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon} from '@chakra-ui/icons'; */
+  import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon} from '@chakra-ui/icons';
 
 export default function UnauthApp() {
     
-/*     const context = useContext(AuthContext)
+    const context = useContext(AuthContext)
     const { usuario } = context
-    console.log(usuario) */
+    console.log(usuario)
 
     const { isOpen, onToggle } = useDisclosure();
 
@@ -52,7 +52,7 @@ export default function UnauthApp() {
                     </Text>
 
                     <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-                        {/* <DesktopNav /> */}
+     
                     </Flex>
                     </Flex>
 
@@ -64,8 +64,7 @@ export default function UnauthApp() {
                         <Link to='/purchaser/item-list'>Lista PRoductos</Link>
                         <Link to='/purchaser'>Comprador</Link>
                         <Link to='/app/profile'>Vendedor</Link>
-                         {/* <Link to='/signup'></Link>
-                        <Link to='/login'>Login</Link> */}
+       
                         <Link to='/app/profile'>PRofileAdmin</Link>
                     <Button
                         as={'a'}
@@ -93,22 +92,21 @@ export default function UnauthApp() {
                     </Stack>
                 </Flex>
 
-                {/* <Collapse in={isOpen} animateOpacity>
-                    <MobileNav />
-                </Collapse> */}
+
             </Box>
 
 
 
             <Switch>
                 <Route exact path='/' component={MainPage} />
-               {/*  <Route exact path='/purchaser' component={PurchaserProfile} />  */}
-               {/*  <Route exact path='/vendor' component={Profile} />  */}
-                {/* <Route exact path='/login' component={Login} />
-                <Route exact path='/signup' component={Signin} /> */}
+             <Route exact path='/purchaser' component={PurchaserProfile} />  
+          <Route exact path='/vendor' component={Profile} />  
+          <Route exact path='/login' component={Login} />
+                <Route exact path='/signup' component={Signin} /> 
                 <Route exact path='/tender/:idTender' component={TenderDetails} />
                 <Route exact path='/purchaser/item-list' component={ListProducts} />
             </Switch>  
         </>
     )
 }
+ */

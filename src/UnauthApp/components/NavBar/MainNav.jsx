@@ -80,6 +80,22 @@ export default function MainNav() {
                 }}>
                 Iniscribete
             </Button>
+
+            {/* <Button
+                as={'a'}
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'red.400'}
+                
+                href={'/logput'}
+                _hover={{
+                bg: 'pink.300',
+                }}>
+                Iniscribete
+            </Button> */}
+
             </Stack>
         </Flex>
 

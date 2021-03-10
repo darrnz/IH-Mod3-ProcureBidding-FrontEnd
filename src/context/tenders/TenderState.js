@@ -5,7 +5,8 @@ import{
     LIST_TENDERS, TENDER_DETAILS, CREATE_TENDER,
     ADD_PRODUCT_TENDER, DELETE_PRODUCT_TENDER,
     ADD_VENDOR_TENDER, DELETE_VENDOR_TENDER,
-    LIST_PRODS,PUSH_ELEM, LIST_VENDORS
+    LIST_PRODS,PUSH_ELEM, LIST_VENDORS, SAVE_VENDOR_TENDER,
+    CLOSE_AND_CLEAR_TENDER, NEW_TENDER, SAVE_AND_SEND_TENDER
 } from '../../types'
 import TenderReducer from './TenderReducer'
 
@@ -13,7 +14,7 @@ export default function TenderState (props) {
 
     
     const initialState = {
-        //tenderForm: false,
+        tenderForm: false,
         productsTenForm: false,
         vendorsTenForm: false,
         listProducts:[],
@@ -27,6 +28,24 @@ export default function TenderState (props) {
 
     const [state, dispatch] = useReducer(TenderReducer, initialState)
 
+    const newTender = () => {
+        dispatch({
+            type: NEW_TENDER
+        })
+    }
+
+    const closeAndClearTender = () => {
+        dispatch({
+            type: CLOSE_AND_CLEAR_TENDER
+        })
+    }
+
+    const saveAndSendTender = () => {
+        dispatch({
+            type: SAVE_AND_SEND_TENDER
+        })
+    }
+    
     const listProductsInv = async() => {
         try {
             const resSer = await clienteAxios.get('/list-products')
@@ -133,21 +152,23 @@ export default function TenderState (props) {
 
 
 
-/*     const vendorOnTenders = elem => {
+     const saveVendorsOnTender = () => {
         try {
             dispatch({
-                type: LIST_VENDOR_TENDER,
-                payload: elem
+                type: SAVE_VENDOR_TENDER,
+                
             })
         } catch (error) {
             
         }
-    } */
+    } 
 
-    const addVendorTender = async infoVendor => {
+    const addVendorTender = async idVendor => {
         try {
             let tenderID = state.newTenderId
-            const resSer = await clienteAxios.post(`/profile/create-tender/${tenderID}/add-vendor`, infoVendor)
+            console.log(tenderID)
+            console.log(idVendor)
+            const resSer = await clienteAxios.put(`/profile/create-tender/${tenderID}/add-vendor/${idVendor}`)
             console.log(resSer.data)
             dispatch({
                 type: ADD_VENDOR_TENDER,
@@ -161,7 +182,7 @@ export default function TenderState (props) {
     const deleteVendorTender = async idVendor => {
         try {
             let tenderID = state.newTenderId
-            const resSer = await clienteAxios.delete(`/profile/create-tender/${tenderID}/delete-vendor`,idVendor)
+            const resSer = await clienteAxios.delete(`/profile/create-tender/${tenderID}/delete-vendor/${idVendor}`)
             dispatch({
                 type: DELETE_VENDOR_TENDER,
                 payload: resSer.data
@@ -176,13 +197,20 @@ export default function TenderState (props) {
             tenderForm: state.tenderForm,
             productsTenForm: state.productsTenForm,
             vendorsTenForm: state.vendorsTenForm,
+
             tenderInfo:state.tenderInfo,
             tenders: state.tenders,
+            newTenderId: state.newTenderId,
             tenderProds: state.tenderProds,
             tenderVendor: state.tenderVendor,
+
+            listProducts: state.listProducts,
             listvendors: state.listvendors,
-            newTenderId: state.newTenderId,
-            listProducts:state.listProducts,
+
+            saveVendorsOnTender,
+            closeAndClearTender,
+            newTender,
+            saveAndSendTender,
             listUserTenders,
             createTender,
             tenderDetails,

@@ -7,22 +7,30 @@ import TenderContext from '../../../context/tenders/TenderContext'
 import { useForm, Controller, useFieldArray  } from 'react-hook-form'
 
 
+
 export default function AddDeleteVendorTender() { 
 
 
     const ctxTender = useContext(TenderContext)
-    const { newTenderId, listvendor, 
-            deleteVendorTender, addVendorTender, tenderVendor, existVendors     } = ctxTender
-        console.log(listvendor)
+    const { newTenderId, listvendors, saveVendorsOnTender,
+            deleteVendorTender, addVendorTender, tenderVendor, } = ctxTender
+        console.log(listvendors)
+
+    const [idVendorSet, setIdVendorSet] = useState({})
     useEffect(() => {
         
-        
+        /* const getVendors = async() => {
+            let resSer = await clientAxios('/list-vendors')
+            
+        } */
 
-    }, [tenderVendor,listvendor])
+    }, [tenderVendor,listvendors])
 
-    const selectVend = (e, idVendor) => {
+    const selectVend = (e, idVendorC) => {
         e.preventDefault()
-        addVendorTender(idVendor)
+/*         setIdVendorSet({idVendor: idVendorC})
+            console.log(idVendorSet) */
+        addVendorTender(idVendorC)
     }
 
     const deleteVend = (e, idVendor) => {
@@ -30,25 +38,30 @@ export default function AddDeleteVendorTender() {
         deleteVendorTender(idVendor)
     }
 
+    const saveVendors = (e) => {
+        e.preventDefault()
+        saveVendorsOnTender()
+    }
+
 
     return (
         <>
-        {console.log(listvendor)}
+        {console.log(listvendors)}
         {   
-            !listvendor ? (<Text>CARGANDO...</Text>) : 
+            !listvendors ? (<Text>CARGANDO...</Text>) : 
             (
                 <Box as='div' mx={30} d='flex' flexDirection='row' justifyContent='space-between'>
         <Box>
             <Box as='h3'>Preveedores Disponibles</Box>
             <OrderedList >
             {
-                listvendor.map((e,id) => {
+                listvendors.map((e,id) => {
                             return(
                                 <ListItem key={e._id} d='flex' justifyContent='spaceBetween'>
                                     <Text>{e.companyName}</Text>
                                     <Text as='small'>Contacto: {e.email}</Text>
                                     <Box as='form'>
-                                    <Button ml={30} value={e._id} type='submit' onClick={(ev) => selectVend(ev,e._id)}>Añadir Proveedor </Button>
+                                    <Button ml={30} value={e._id} type='submit' onClick={(ev) => selectVend(ev,e._id)}> Añadir Proveedor </Button>
                                     </Box>
                                 </ListItem>
                                 )
@@ -73,6 +86,7 @@ export default function AddDeleteVendorTender() {
 
             </OrderedList>
         </Box>
+        <Button onClick={(e)=>{saveVendors(e)}}>Guardar Proveedores</Button>
     </Box> 
             )
         }

@@ -46,7 +46,7 @@ export default function Signin(props) {
 
     useEffect(() => {
         if(autenticado){
-            history.push('/app/profile')
+            history.push('/vendor')
         }
 
         if(mensaje){

@@ -13,9 +13,10 @@ import AddDeleteVendorTender from './AddDeleteVendorTender'
 export default function AddTender() {
 
     const ctxTender = useContext(TenderContext)
-    const { tenderProds, addProductTender, tenderVendor, existVendors,
-            newTenderId, productsTenForm, vendorsTenForm,
-            tenderInfo, createTender, ListProducts,listProductsInv } = ctxTender
+    const { tenderProds, existVendors, productsTenForm, vendorsTenForm,
+            tenderInfo, createTender, ListProducts, listProductsInv,
+            tenderVendor, saveAndSendTender
+        } = ctxTender
 
     const [form, handleInput] = useForm()
     //const toast = useToast() //chakra
@@ -25,8 +26,14 @@ export default function AddTender() {
         e.preventDefault()
         listProductsInv()
         existVendors()
+        console.log(form)
         createTender(form)
         
+    }
+
+    const saveTender = (e) => {
+        e.preventDefault()
+        saveAndSendTender()
     }
 
 
@@ -85,10 +92,20 @@ export default function AddTender() {
                     productsTenForm? <AddDeleteProdTender/> : tenderProds != null? tenderProds.map((e,id )=> { return(<p key={id}>{e.productDescription}</p>)}):""
                 }
                 {
-                    vendorsTenForm? <AddDeleteVendorTender/> : ""
+                    vendorsTenForm? <AddDeleteVendorTender/> : tenderVendor != null? tenderVendor.map((e,id )=> { return(<p key={id}>{e.companyName}</p>)}):""
                 }
                 
             </Box>
+            
+
+            {
+                productsTenForm === false && vendorsTenForm === false && tenderProds != null && tenderVendor != null?
+                <Box>
+                    <Button onClick={(e) => saveTender(e)}>Enviar Licitación</Button>
+                </Box> : ""
+
+            }    
+
 
         </Box> 
     )
