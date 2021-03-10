@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Box, Input, Button, Radio, RadioGroup, Stack } from '@chakra-ui/react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 
 import AlertaContext from '../../context/alerts/AlertContext.js'
 import AuthContext from '../../context/auth/AuthContext'
 
 
 export default function Signin(props) {
-   
+    
     const alertaContext = useContext(AlertaContext)
     const { alerta, mostrarAlerta } = alertaContext
 
@@ -46,7 +46,7 @@ export default function Signin(props) {
 
     useEffect(() => {
         if(autenticado){
-            history.push('/main-page')
+            history.push('/app/profile')
         }
 
         if(mensaje){
@@ -91,6 +91,8 @@ export default function Signin(props) {
     }
 
     return (
+        <>
+        
         <Box as='main' d='flex' w='100vw' h='100vh' alignContent='center' justifyContent='center'>
         {alerta ?  
                 (
@@ -184,5 +186,6 @@ export default function Signin(props) {
                 >Registrarme</Button>    
             </Box>
         </Box>
+    </>
     )
 }

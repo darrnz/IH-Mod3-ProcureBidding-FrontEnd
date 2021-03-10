@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Box, Input, Button, Heading, useToast} from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom'
-import AlertaContext from '../../context/alerts/AlertContext'
+/* import AlertaContext from '../../context/alerts/AlertContext' */
 import AuthContext from '../../context/auth/AuthContext'
 
 export default function Login(props) {
 
-    const alertaContext = useContext(AlertaContext)
-    const { alerta, mostrarAlerta } = alertaContext
+    /* const alertaContext = useContext(AlertaContext)
+    const { alerta, mostrarAlerta } = alertaContext */
 
     const authContext = useContext(AuthContext)
     const { mensaje, autenticado, iniciarSesion } = authContext;
@@ -17,13 +17,13 @@ export default function Login(props) {
 
     useEffect(() => {
         if(autenticado){
-            props.history.push('/main-page')
+            props.history.push('/vendor')
         }
 
-        if(mensaje){
+      /*   if(mensaje){
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
-
+ */
     }, [mensaje, autenticado, history])
 
     const [usuario, guardarUsuario] = useState({
@@ -42,9 +42,9 @@ export default function Login(props) {
     const onSubmit = e => {
         e.preventDefault()
         
-        if(email.trim() === "" || password.trim() === ""){
+       /*  if(email.trim() === "" || password.trim() === ""){
             return mostrarAlerta("Todos los campos son obligatorios", "alerta-error")
-        }
+        } */
         iniciarSesion({email, password})
 
     }
@@ -56,13 +56,13 @@ export default function Login(props) {
             <Heading as='h1'>
                 Welcomeback! Please enter your data to login.
             </Heading>
-            {alerta ?  
+           {/*  {alerta ?  
                 (
                     <div className={`alerta ${alerta.categoria}`}>
                         {alerta.msg}
                     </div>
                 )
-            : null}
+            : null} */}
             <Box as='form' d='flex' flexDirection='column' justifyContent='center' alignContent='center'>
                 <Input 
                     type='email'

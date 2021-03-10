@@ -14,7 +14,7 @@ export default function AddTender() {
     const ctxTender = useContext(TenderContext)
     const { tenderProds, addProductTender, 
             newTenderId, productsTenForm, 
-            tenderInfo, createTender } = ctxTender
+            tenderInfo, createTender, ListProducts,listProductsInv } = ctxTender
 
     const [form, handleInput] = useForm()
     //const toast = useToast() //chakra
@@ -22,7 +22,9 @@ export default function AddTender() {
     const submitCreteTender = (e,form) => {
         console.log(form)
         e.preventDefault()
+        listProductsInv()
         createTender(form)
+        
     }
 
 

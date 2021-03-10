@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import TenderContext from '../../../context/tenders/TenderContext'
 import { useParams } from 'react-router-dom'
-import { ListItem, Text, UnorderedList } from '@chakra-ui/layout'
+import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/layout'
 
 export default function TenderDetails() {
 
@@ -15,15 +15,20 @@ export default function TenderDetails() {
         console.log(tenderInfo)
     }, [])
     
-    let vendors = tenderInfo['idVendor']
-    console.log(vendors)
+    /* let vendors = tenderInfo['idVendor']
+    console.log(vendors) */
 
     return (
         <div>
-        Hola
+        {/* {
+            tenderInfo === null ? '' : 
+            <Box>
             <Text>{tenderInfo.tenderTitle}</Text>
             <Text>{tenderInfo.status}</Text>
             <Text>{tenderInfo.generalInfo}</Text>
+            </Box>
+        } */}
+            
             {/* <ul>{
                 vendors.map((e,id) => {
                     return(

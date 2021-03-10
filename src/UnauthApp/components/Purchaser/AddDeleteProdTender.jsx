@@ -13,9 +13,11 @@ import { useForm, Controller, useFieldArray  } from 'react-hook-form'
 
 export default function AddDeleteProdTender() {
     const { register, handleSubmit, watch, errors, control } = useForm();   
+
     const ctxTender = useContext(TenderContext)
-    const { tenderProds, addProductTender, newTenderId } = ctxTender
-   
+    const { tenderProds, addProductTender,
+            newTenderId, listProducts, pushProd } = ctxTender
+
     
     
     /* function setQty(value) {
@@ -27,28 +29,53 @@ export default function AddDeleteProdTender() {
     /* function setid(valueId) {
         setForm({...form, idProduct:valueId})
     } */
-    const [productsList, setProductsList] = useState([])
-    /* const [form, setForm] = useState({
-        
-    }) */
+    const [quantitySet, setQuantitySet] = useState(1)
+    const handleQty = (event) => {
+        event.preventDefault()
+        setQuantitySet(
+            event.target.value
+        )
+    }
 
-
+console.log(listProducts)
     useEffect(() => {
-        const listProducts = async() => {
-            let resSer = await clienteAxios.get('/list-products')
-            setProductsList(resSer.data)
-            console.log(productsList)
-        }
-        listProducts()
-    }, [])
-
-    const onClickAdd = ( data,e ) => {
+        
+        
+    }, [tenderProds,listProducts]) 
+    
+    const selectPro = (e,idc) => {
         e.preventDefault()
-        addProductTender(data)
+        let sel = listProducts.find(elem => 
+            elem.idLocal === idc
+        )
+        sel = {
+            ...sel,
+            quantity:quantitySet
+        }
+        pushProd(sel)
+
+        let pop = listProducts.findIndex(elem => 
+            elem.idLocal === idc
+        )
+        console.log(pop)
+        listProducts.splice(pop,1)
+    
+    }
+
+    const onClickAdd = ( tenderProds,e ) => {
+        e.preventDefault()
+        addProductTender(tenderProds) 
         /* setForm({}) */ 
         
-        console.log(data)
+        console.log(tenderProds)
         console.log(e)
+    }
+
+    const onClickDelete = (e,idc) =>{
+        e.preventDefault()
+        let seldel = listProducts.find(elem => 
+            elem.idLocal === idc
+        )
     }
     console.log(tenderProds)
 
@@ -58,52 +85,40 @@ export default function AddDeleteProdTender() {
                     <Box as='h3'>Lista de productos</Box>
                     <OrderedList >
                     {
-                                productsList.map((e,id) => {
+                        listProducts.map((e,id) => {
                                     return(
                                         <ListItem key={id} d='flex' justifyContent='spaceBetween'>
-                                            <Text>{e.idLocal}</Text>
+                                            <Text>{id}</Text>
                                             <Text>{e.productDescription}</Text>
-                                            <Box as='form' d='flex' onSubmit={ handleSubmit(onClickAdd)}>
-                                                <FormControl id='quantity'  pr={10} pl={10} width={40}>
-                                                    <Controller as={      
-                                                      <NumberInput min={1}  ref={register()} > {/* nChange={(data) => setQty(data)} */}
-                                                        <NumberInputField  />
-                                                        <NumberInputStepper>
-                                                            <NumberIncrementStepper />
-                                                            <NumberDecrementStepper />
-                                                        </NumberInputStepper>
-                                                    </NumberInput>  
-                                                    }
-                                                    name='quantity'
-                                                    control={control}
-                                                    />
-                                                </FormControl>  
-                                                {/* <input type="number" placeholder="quantity" name="quantity1" ref={register} /> */}
-                                                <input type='text' value={e._id} name='idProduct' ref={register()}  />
-                                                {/* <Input type='text' value={e._id} name='idProduct' onChange={valueId => {setid(valueId)}}/> */}
-                                                <Button ml={30} type='submit' >Añadir </Button>
+                                            <Box as='form'>
+                                            <Input type='text' name='idc'value={id} readOnly/>
+                                            <input type='number' defaultValue={1} onChange={(e) =>handleQty(e)} />
+                                            <Button ml={30} value={e.idLocal} type='submit'onClick={(ev) => selectPro(ev,e.idLocal)} >Añadir </Button>
                                             </Box>
                                         </ListItem>
                                         )
                                 })
-                            }    
+                            }
                     </OrderedList>    
                 </Box>
                 <Box>
+            
                     <Box as='h3'>Productos añadidos</Box>
                     <OrderedList>
                         {
+                        
                             tenderProds.map((e,id) => {
                                 return (
                                     <ListItem key={id}>
-                                        <Text>{e.name}</Text>
-                                        <Button>Delete</Button>
+                                        <Text>{e.productDescription}</Text>
+                                        <Button  value={e.idLocal} type='submit'onClick={(ev) => onClickDelete(ev,e.idLocal)}>Borrar</Button>
                                     </ListItem>
                                 )
                             })
                         }    
 
                     </OrderedList>
+                    <Button onClick={(e)=>{onClickAdd(tenderProds,e)}}>Delete</Button>
                 </Box>
             </Box> 
     )

@@ -3,7 +3,7 @@ import { Box, Button, Text,
     Table, Thead, Tbody, Tr, Th, Td, TableCaption,} from '@chakra-ui/react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
+import { useForm } from 'react-hook-form'
 
 export default function ListTenders() {
     
@@ -12,11 +12,13 @@ export default function ListTenders() {
     useEffect(() => {
         const getPurchaserTenders = async() => {
             let resSer = await axios.get('http://localhost:3001/profile/purchaser')
-            console.log(resSer.data.idTender)
-            setListUserTenders(resSer.data.idTender)
+            console.log(resSer.data)
+            setListUserTenders(resSer.data)
         }
         getPurchaserTenders()
     }, [])
+
+    
     
     return (
         <>
@@ -34,7 +36,7 @@ export default function ListTenders() {
                     </Thead>
                     <Tbody>
 
-                {
+                {/* {
                     listUserTenders.map((e,id) => {
                         return (
                             <Tr key={e._id}>
@@ -51,7 +53,7 @@ export default function ListTenders() {
                             </Tr>  
                         )
                     })
-                } 
+                } */} 
                 </Tbody>
                 </Table>
             </Box>

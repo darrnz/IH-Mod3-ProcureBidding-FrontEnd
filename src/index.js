@@ -15,18 +15,9 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'  ///entrada a pagina y rutas segun logeo
 
 ReactDOM.render(
-    <TenderState>
-        <AlertaState>
-        <AuthState>
-        <ChakraProvider >
-            <CSSReset />
-            <BrowserRouter>
-                <App/>
-            </BrowserRouter>
-        </ChakraProvider>
-        </AuthState>
-        </AlertaState>
-    </TenderState>
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>
     
     , document.getElementById('root'));
 
