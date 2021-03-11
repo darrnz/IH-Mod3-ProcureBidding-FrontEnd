@@ -2,11 +2,9 @@ import React, { useContext, useEffect } from 'react'
 import {
     Image, Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent, 
     useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
-/* import Profile from './AuthApp/components/Profile' */
 import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
-import tokenAuth from '../../../services/token'
 import AuthContext from '../../../context/auth/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import { MdPerson } from 'react-icons/md'
@@ -15,7 +13,7 @@ export default function MainNav(props) {
 
     const { isOpen, onToggle } = useDisclosure();
     const authContext = useContext(AuthContext)
-    const { mensaje, autenticado, iniciarSesion, cerrarSesion, usuario} = authContext;
+    const { autenticado, cerrarSesion, usuario} = authContext;
     const history = useHistory()
     console.log(usuario)
 

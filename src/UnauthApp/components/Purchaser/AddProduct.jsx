@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Box, Input, Button, Text, FormControl, FormLabel, FormErrorMessage, FormHelperText, 
-    NumberInput,NumberInputField,NumberInputStepper,NumberIncrementStepper,NumberDecrementStepper,
-    Select} from '@chakra-ui/react'
+import { Box, Input, Button, Text, FormControl, FormLabel,  FormHelperText, Select} from '@chakra-ui/react'
 import clienteAxios from '../../../services/axios'
 import AuthContext from '../../../context/auth/AuthContext'
-import { useForm, Controller, useFieldArray  } from 'react-hook-form'
 import TenderContext from '../../../context/tenders/TenderContext'
 
 

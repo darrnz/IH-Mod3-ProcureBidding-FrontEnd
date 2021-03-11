@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Input, Button, Radio, RadioGroup, Stack, Text,
-        FormControl, FormLabel,
-        List, ListItem, ListIcon, OrderedList, UnorderedList,Spacer, Grid,Modal,ModalBody,
-        NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper,GridItem,
-        NumberDecrementStepper } from '@chakra-ui/react'
-import ListProducts from './ListProducts'
-import { useParams } from 'react-router-dom'
+import { Box, Input, Button,     
+        List, ListItem, ListIcon, OrderedList, UnorderedList,Spacer, Grid,
+        } from '@chakra-ui/react'
 import TenderContext from '../../../context/tenders/TenderContext'
-import { useForm, Controller, useFieldArray  } from 'react-hook-form'
-
 
 export default function AddDeleteProdTender(props) {
-    const { register, handleSubmit, watch, errors, control } = useForm();   
 
     const ctxTender = useContext(TenderContext)
     const { tenderProds,existVendors, addProductTender, deleteProductTender,

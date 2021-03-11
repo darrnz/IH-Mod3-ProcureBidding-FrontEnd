@@ -1,10 +1,10 @@
-import React from 'react'
+/* import React from 'react'
 import { Link } from 'react-router-dom'
 import NavItem from './NavItem'
 import {
-    Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent,/* Link, */
+    Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent,
     useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
-/* import Profile from './AuthApp/components/Profile' */
+
 import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 export default function MobileNav() {
@@ -58,3 +58,4 @@ export default function MobileNav() {
     </Stack>
   );
 }
+ */

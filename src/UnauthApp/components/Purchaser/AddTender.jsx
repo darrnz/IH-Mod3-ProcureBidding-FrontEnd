@@ -1,24 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Input, Button, Radio, RadioGroup, Stack, Text, Flex,
-        List, ListItem, ListIcon, OrderedList, UnorderedList, Spacer,
+import { Box, Input, Button, Text, Flex, Spacer,
     FormControl,FormLabel } from '@chakra-ui/react'
-import ListProducts from './ListProducts'
 import AddDeleteProdTender from './AddDeleteProdTender'
-import clienteAxios from '../../../services/axios'
-import { useParams } from 'react-router-dom'
 import TenderContext from '../../../context/tenders/TenderContext'
-import useForm from '../../../hooks/useForm'
 import AddDeleteVendorTender from './AddDeleteVendorTender'
 import AuthContext from '../../../context/auth/AuthContext'
 
 export default function AddTender(props) {
 
     const authContext = useContext(AuthContext)
-    const {  usuario, usuarioAutenticado } = authContext;
+    const {  usuario} = authContext;
 
     const ctxTender = useContext(TenderContext)
     const { tenderProds, existVendors, productsTenForm, vendorsTenForm,
-            tenderInfo, createTender, ListProducts, listProductsInv,
+            tenderInfo, createTender, listProductsInv,
             tenderVendor, saveAndSendTender, btnSendTen
         } = ctxTender
 

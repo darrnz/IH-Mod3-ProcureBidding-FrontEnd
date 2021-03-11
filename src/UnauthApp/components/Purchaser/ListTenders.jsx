@@ -1,17 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Box, Button, Text,
-    Table, Thead, Tbody, Tr, Th, Td, TableCaption,} from '@chakra-ui/react'
-
+    Table, Thead, Tbody, Tr, Th, Td, } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
 import TenderContext from '../../../context/tenders/TenderContext'
 import AuthContext from '../../../context/auth/AuthContext'
 
-import { useHistory } from 'react-router-dom'
 export default function ListTenders(props) {
     
     const authContext = useContext(AuthContext)
-    const { usuario, usuarioAutenticado } = authContext;
+    const { usuario } = authContext;
 
     const ctxTender = useContext(TenderContext)
     const { tenders, listUserTenders } = ctxTender
