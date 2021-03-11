@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import {
-    Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent, 
+    Image, Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent, 
     useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
 /* import Profile from './AuthApp/components/Profile' */
 import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
@@ -10,6 +10,7 @@ import tokenAuth from '../../../services/token'
 import AuthContext from '../../../context/auth/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 import { MdPerson } from 'react-icons/md'
+import logoMain from '../../../images/logo1.png'
 export default function MainNav(props) {
 
     const { isOpen, onToggle } = useDisclosure();
@@ -20,7 +21,7 @@ export default function MainNav(props) {
 
     const clickLogout = () => {
         cerrarSesion()
-        props.history.push('/')
+        history.push('/')
     }
 
     useEffect(() => {
@@ -49,12 +50,7 @@ export default function MainNav(props) {
             />
             </Flex>
             <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
-                textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                fontFamily={'heading'}
-                color={useColorModeValue('gray.800', 'white')}>
-                Logo
-            </Text>
+            <Image src={logoMain} alt='logo' width={180} />
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
                 <DesktopNav />

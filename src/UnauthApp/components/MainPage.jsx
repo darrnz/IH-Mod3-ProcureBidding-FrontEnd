@@ -1,11 +1,13 @@
+import { Image,Box  } from '@chakra-ui/react'
 import React from 'react'
-import imgage from '../../0b6c8f32255c7864c717b93bd02271b1.png'
+import imgage from '../../images/Digital-Procurement-Bank-SIPMM-1280x720.jpg'
 
 export default function MainPage() {
     return (
         <div>
             <h1>Esta es la pagina principal</h1>
-            <img src={imgage} />
+            <Image src={imgage}  />
+            <Box as='footer'>Footer</Box>
         </div>
     )
 }

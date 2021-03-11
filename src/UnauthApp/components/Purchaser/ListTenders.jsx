@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Box, Button, Text,
     Table, Thead, Tbody, Tr, Th, Td, TableCaption,} from '@chakra-ui/react'
-import axios from 'axios'
+
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import TenderContext from '../../../context/tenders/TenderContext'
+import AuthContext from '../../../context/auth/AuthContext'
 
+import { useHistory } from 'react-router-dom'
 export default function ListTenders(props) {
     
-    const [listUserTenders, setListUserTenders] = useState([])
+    const authContext = useContext(AuthContext)
+    const { usuario, usuarioAutenticado } = authContext;
 
+    const ctxTender = useContext(TenderContext)
+    const { tenders, listUserTenders } = ctxTender
+    console.log(tenders)
     useEffect(() => {
-        const getPurchaserTenders = async() => {
-            let resSer = await axios.get('http://localhost:3001/profile/purchaser')
-            console.log(resSer.data)
-            setListUserTenders(resSer.data)
-        }
-        getPurchaserTenders()
+        
+        
     }, [])
-
-    
+   
     
     return (
         <>
@@ -37,8 +39,9 @@ export default function ListTenders(props) {
                     </Thead>
                     <Tbody>
 
-                {/* {
-                    listUserTenders.map((e,id) => {
+                {   
+                    usuario == null ? <p>cargando...</p> :
+                    usuario.idTender.map((e,id) => {
                         return (
                             <Tr key={e._id}>
                                 <Td>{e.tenderTitle}</Td>
@@ -46,15 +49,15 @@ export default function ListTenders(props) {
                                 <Td>{new Date(e.endDate).toDateString()}</Td>
                                 <Td>{e.status}</Td>
                                 <Td  d='flex' flexDir='row' justifyContent='space-evenly' alignContent='center' alignItems='center'>
-                                    <Button>Ver Detalle</Button>
+                                    <Button><Link to={`/tender/${e._id}`}>Detalles</Link></Button>
                                     <Button>Editar</Button>
-                                    <Link to={`/tender/${e._id}`}>Detalles</Link>
+                                    
                                 </Td>
                                 <Td>{new Date(e.updatedAt).toDateString()}</Td>
                             </Tr>  
                         )
                     })
-                } */} 
+                } 
                 </Tbody>
                 </Table>
             </Box>

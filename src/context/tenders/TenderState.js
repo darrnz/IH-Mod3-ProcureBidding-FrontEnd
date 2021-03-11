@@ -67,6 +67,7 @@ export default function TenderState (props) {
             console.log(error)
         }
     }
+
     const existVendors = async() => {
         try {
             const resSer = await clienteAxios.get('/list-vendors')
@@ -83,7 +84,9 @@ export default function TenderState (props) {
 
     const listUserTenders = async userId => {
         try {
-            const resSer = await clienteAxios.get()
+            console.log(userId)
+            let loggedId =  userId._id
+            const resSer = await clienteAxios.get(`/profile/user-tenders/${loggedId}`)
             dispatch({
                 type:LIST_TENDERS,
                 dispatch:resSer.data
@@ -110,6 +113,7 @@ export default function TenderState (props) {
 
     const tenderDetails = async (idTender) => {
         try {
+            console.log(idTender)
             const resSer = await clienteAxios.get(`/profile/tender-details/${idTender}`)
             console.log(resSer)
             

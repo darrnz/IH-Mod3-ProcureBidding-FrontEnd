@@ -56,7 +56,7 @@ export default (state, action) => {
         case LIST_TENDERS:
                 return {
                     ...state,
-                    tenders:[...state.tenders, action.payload]
+                    tenders: [...state.tenders, action.payload]
                 }
             
         case TENDER_DETAILS:
@@ -68,7 +68,7 @@ export default (state, action) => {
             return {
                 ...state,
                 newTenderId: action.payload._id,
-        
+                tenders:[...state.tenders, action.payload],
                 productsTenForm: true,
                 tenderInfo: action.payload
             }

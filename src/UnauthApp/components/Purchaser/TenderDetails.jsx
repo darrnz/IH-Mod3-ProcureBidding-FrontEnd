@@ -9,25 +9,26 @@ export default function TenderDetails(props) {
     const { tenderDetails, tenderInfo } = context
 
     let { idTender } = useParams()
+    console.log(idTender)
 
     useEffect( ()  => {
         tenderDetails(idTender)
         console.log(tenderInfo)
     }, [])
     
-    /* let vendors = tenderInfo['idVendor']
-    console.log(vendors) */
+    let vendors = tenderInfo['idVendor']
+    console.log(vendors)
 
     return (
         <div>
-        {/* {
+        {
             tenderInfo === null ? '' : 
             <Box>
             <Text>{tenderInfo.tenderTitle}</Text>
             <Text>{tenderInfo.status}</Text>
             <Text>{tenderInfo.generalInfo}</Text>
             </Box>
-        } */}
+        }
             
             {/* <ul>{
                 vendors.map((e,id) => {

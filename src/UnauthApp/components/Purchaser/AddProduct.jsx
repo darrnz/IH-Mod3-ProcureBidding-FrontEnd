@@ -20,7 +20,7 @@ export default function AddProduct(props) {
     
     const [value, setValua] = React.useState('Equipo Computo')
     function setFam(value) {
-        setNewProduct({...usuario, productFamily: value})
+        setNewProduct({...newProduct, productFamily: value})
     }  
     const [newProduct, setNewProduct] = useState(
         {

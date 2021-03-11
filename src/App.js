@@ -20,6 +20,7 @@ import ListProducts from './UnauthApp/components/Purchaser/ListProducts'
 import TenderDetails from './UnauthApp/components/Purchaser/TenderDetails'
 import AuthContext from './context/auth/AuthContext'
 import MainNav from './UnauthApp/components/NavBar/MainNav';
+import ListTenders from './UnauthApp/components/Purchaser/ListTenders';
 
 export default function App() {
     ////determinar q rutas osn provadas
@@ -39,13 +40,15 @@ export default function App() {
                     
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/signup' component={Signin}/>
+                    <Route exact path='/' component={MainPage}/>
 
-                    <Route exact path='/vendor' component={VendorProfile} />
-                    <Route  exact path='/purchaser' component={PurchaserProfile} /> 
-                    <Route exact path='/tender/:idTender' component={TenderDetails} />
+
+                    <RutaPrivada exact path='/vendor' component={VendorProfile} />
+                    <RutaPrivada  exact path='/purchaser' component={PurchaserProfile} /> 
+                    <RutaPrivada exact path='/tender/:idTender' component={TenderDetails} />
                     <RutaPrivada exact path='/purchaser/item-list' component={ListProducts} />
 
-                    <Route exact path='/' component={MainPage}/>
+                    
                 </Switch>
                 
             </Router>

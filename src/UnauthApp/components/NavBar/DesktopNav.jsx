@@ -15,9 +15,7 @@ export default function DesktopNav () {
     const authContext = useContext(AuthContext)
     const { mensaje, autenticado, registrarUsuario, usuario } = authContext;
 
-    useEffect(() => {
-
-    }, [usuario])
+ 
 
     return (
         <Stack direction={'row'} spacing={4}>
@@ -49,7 +47,6 @@ export default function DesktopNav () {
             <Box >
                    {/*  {
                         usuario == null ? '' :
-                        autenticado? 
                             usuario.role === 'Admin' ? 
                                 (
                                     <Box>

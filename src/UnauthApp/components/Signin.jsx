@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Box, Input, Button, Radio, RadioGroup, Stack, useToast, Heading, Text,
-    FormControl, FormLabel, HStack
+    FormControl, FormLabel, HStack, Image
 } from '@chakra-ui/react'
 import { Link, useHistory, Redirect } from 'react-router-dom'
-
+import logoLog from '../../images/logo final 2.png' 
 import AlertaContext from '../../context/alerts/AlertContext.js'
 import AuthContext from '../../context/auth/AuthContext'
 
@@ -114,7 +114,7 @@ export default function Signin(props) {
                     
                 )
             : null}
-
+            <Image src={logoLog} mb={1}/>
                 <Box my={10}>
                     <Heading as='h1' >
                     ¡Bienvendo, registrate!

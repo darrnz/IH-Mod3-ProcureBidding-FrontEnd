@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Box, Input, Button,Text, useToast, InputGroup, InputLeftElement, Heading } from '@chakra-ui/react'
+import { Box, Input, Button,Text, useToast, InputGroup, InputLeftElement, Heading, Image } from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom'
 import AlertaContext from '../../context/alerts/AlertContext'
 import AuthContext from '../../context/auth/AuthContext'
+import logoLog from '../../images/logo final 2.png' 
 
 export default function Login(props) {
 
@@ -18,9 +19,7 @@ export default function Login(props) {
     useEffect(() => {
         if(autenticado ) {
             console.log(usuario)
-            usuario.role === 'Vendor' ? 
-                props.history.push('/vendor')
-            :
+
                 props.history.push('/purchaser')
         }
 
@@ -57,6 +56,8 @@ export default function Login(props) {
 
     return (
         <Box as='div' mt={50} d='flex' flexDir='column' alignContent='center' justifyContent='center'  alignItems='center'>
+            
+            <Image src={logoLog}/>
             <Heading as='h1' >
                 ¡Bienvendo!
             </Heading>

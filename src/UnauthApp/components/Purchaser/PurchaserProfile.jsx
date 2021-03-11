@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Box, Input, Button, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
 import { Switch, Route, Redirect, Link } from 'react-router-dom'
@@ -6,12 +6,26 @@ import ListTenders from './ListTenders'
 import AddTender from './AddTender'
 import TenderDetails from './TenderDetails'
 import TenderContext from '../../../context/tenders/TenderContext'
+import AuthContext from '../../../context/auth/AuthContext'
+import Loader from '../../layout/Loader'
+import { useHistory } from 'react-router-dom'
 
-
-export default function PurchaserProfile() {
+export default function PurchaserProfile(props) {
 
     const ctxTender = useContext(TenderContext)
-    const { newTender, closeAndClearTender, tenderForm  }  = ctxTender
+    const { newTender, closeAndClearTender, tenderForm, 
+        tenders, listUserTenders
+    }  = ctxTender
+
+    const history = useHistory()
+    const authContext = useContext(AuthContext)
+    const { usuario, usuarioAutenticado } = authContext;
+
+ 
+    useEffect(() => {
+ 
+        
+    }, [])
 
     const createTender = (e) => {
         e.preventDefault()
@@ -21,6 +35,13 @@ export default function PurchaserProfile() {
     const closeNewTender = (e) => {
         e.preventDefault()
         closeAndClearTender()
+    }
+
+    if(usuario == null) {
+       return(<Loader />)
+    }
+    if(usuario.role==='Vendor') {
+        history.push('/vendor')
     }
  
     return (
@@ -50,7 +71,7 @@ export default function PurchaserProfile() {
                     
                 </Box>
                 <Box>
-                    <ListTenders/>
+                    <ListTenders user={usuario}/>
                 </Box>
                 <Box>
                     <TenderDetails />

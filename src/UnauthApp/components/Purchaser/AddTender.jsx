@@ -9,8 +9,12 @@ import { useParams } from 'react-router-dom'
 import TenderContext from '../../../context/tenders/TenderContext'
 import useForm from '../../../hooks/useForm'
 import AddDeleteVendorTender from './AddDeleteVendorTender'
+import AuthContext from '../../../context/auth/AuthContext'
 
 export default function AddTender(props) {
+
+    const authContext = useContext(AuthContext)
+    const {  usuario, usuarioAutenticado } = authContext;
 
     const ctxTender = useContext(TenderContext)
     const { tenderProds, existVendors, productsTenForm, vendorsTenForm,
@@ -18,16 +22,45 @@ export default function AddTender(props) {
             tenderVendor, saveAndSendTender, btnSendTen
         } = ctxTender
 
-    const [form, handleInput] = useForm()
-    //const toast = useToast() //chakra
-    
-    const submitCreteTender = (e,form) => {
-        console.log(form)
+
+    const [newTender, setNewTender] = useState(
+        {
+            loggedId: usuario._id,
+            tenderTitle: '',
+            startDate: '',
+            endDate: '',
+            generalInfo:'',
+        }
+    )
+
+    useEffect(() => {
+
+
+    }, [])
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setNewTender({
+            ...newTender,
+            [e.target.name]: e.target.value
+        })
+        console.log(newTender)
+    }
+  
+    const submitCreteTender = (e) => {
+        console.log(newTender)
         e.preventDefault()
         listProductsInv()
         existVendors()
-        console.log(form)
-        createTender(form)
+        console.log(newTender)
+        createTender(newTender)
+        setNewTender({
+            loggedId: usuario._id,
+            tenderTitle: '',
+            startDate: '',
+            endDate: '',
+            generalInfo:'',
+        })
         
     }
 
@@ -55,12 +88,13 @@ export default function AddTender(props) {
                                 <Text   fontSize="lg">Fecha Fin: <b>{`${new Date(tenderInfo.endDate).getFullYear()}/${new Date(tenderInfo.endDate).getMonth() < 10 ? "0" + new Date(tenderInfo.endDate).getMonth():new Date(tenderInfo.endDate).getMonth()}` }</b></Text>  
                             </Box>
                             <Box d='flex' ml={8} flexDirection='column'>
-                                <Text textAlign='center'>Título de licitación</Text>
+                                <Text textAlign='center'>Información general</Text>
                                 <Text  fontSize="lg">{tenderInfo.generalInfo}</Text>  
                             </Box>
                         </Flex>   
                     </FormControl>
                     </Box>
+
                     : 
 
                     <Box as='form' w={1000} d='flex' alignItems='center' alignContent='center' bg='white'  boxShadow="lg">
@@ -75,7 +109,7 @@ export default function AddTender(props) {
                                 type='text' 
                                 name='tenderTitle'
                                 placeholder='Escribe el título con el que tu y los proveedores identificarán esta licitación'
-                                onChange={handleInput}
+                                onChange={(e) => {handleChange(e)}}
                             />
                         </FormControl>
                         <Flex  >
@@ -85,7 +119,7 @@ export default function AddTender(props) {
                                 <Input 
                                     type='date' 
                                     name='startDate'
-                                    onChange={handleInput}
+                                    onChange={(e) => {handleChange(e)}}
                                 />
                                 </FormControl>
 
@@ -95,7 +129,7 @@ export default function AddTender(props) {
                                 <Input 
                                     type='date' 
                                     name='endDate'
-                                    onChange={handleInput}
+                                    onChange={(e) => {handleChange(e)}}
                                 />
                                 </FormControl>
                             </Box>
@@ -107,13 +141,13 @@ export default function AddTender(props) {
                                 type='text' 
                                 name='generalInfo'
                                 placeholder='Agrega detalles importates que los proveedores participantes deban saber'
-                                onChange={handleInput}
+                                onChange={(e) => {handleChange(e)}}
 
                             />
                             <Box as='small'>Agrega detalles como número de entregas, especificaciones técnicas, horarios, formas de pago, etc.</Box>
                             </FormControl>
                         </Flex>
-                        <Button mt={3} size="lg"  colorScheme="teal" variant="outline" onClick={(e => submitCreteTender(e,form))}>Guardar y continuar a proveedores</Button>
+                        <Button mt={3} size="lg"  colorScheme="teal" variant="outline" onClick={(e => submitCreteTender(e))}>Guardar y continuar a proveedores</Button>
                 </FormControl>
                 </Box>
              
