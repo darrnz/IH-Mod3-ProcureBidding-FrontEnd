@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Box, Input, Button, Text, FormControl, FormLabel, FormErrorMessage, FormHelperText, 
     NumberInput,NumberInputField,NumberInputStepper,NumberIncrementStepper,NumberDecrementStepper,
     Select} from '@chakra-ui/react'
 import clienteAxios from '../../../services/axios'
-
+import AuthContext from '../../../context/auth/AuthContext'
 import { useForm, Controller, useFieldArray  } from 'react-hook-form'
-export default function AddProduct() {
+import TenderContext from '../../../context/tenders/TenderContext'
 
 
-    const { register, handleSubmit, watch, errors, control, reset} = useForm(); 
+export default function AddProduct(props) {
+    const authContext = useContext(AuthContext)
+    const {  usuario, usuarioAutenticado } = authContext;
+
+    const ctxTender = useContext(TenderContext)
+    const { listProductsInv, listProducts, addProdToList } = ctxTender
+
+    console.log(usuario) 
+    
+    
+    const [value, setValua] = React.useState('Equipo Computo')
+    function setFam(value) {
+        setNewProduct({...usuario, productFamily: value})
+    }  
     const [newProduct, setNewProduct] = useState(
         {
+            idCreator: usuario._id,
             idLocal: '',
             productDescription: '',
             boxSize: 0,
@@ -18,36 +32,36 @@ export default function AddProduct() {
             productFamily: '',
         }
     )
-/*     useEffect(() => {
-        const listProducts = async() => {
-            let resSer = await clienteAxios.post('/create-product')
-            setProductsList(resSer.data)
-            console.log(productsList)
-        }
-        listProducts()
-    }, []) */
 
-/*     const handleChange = (e) => {
-        //e.preventDefault()
+    useEffect(() => {
+
+        usuarioAutenticado()
+    }, [])
+
+    const handleChange = (e) => {
+        e.preventDefault()
         setNewProduct({
             ...newProduct,
             [e.target.name]: e.target.value
         })
         console.log(newProduct)
-    } */
-    let listCreated = []
-    console.log(listCreated)
-    const onClickAdd = async ( data,e ) => {
-        e.preventDefault()
-        console.log(data)
-        console.log(e)
-   
-        let createdProd = await clienteAxios.post('/create-product', data)
-        console.log(createdProd.data)
-        listCreated.push(createdProd.data)
-        console.log(listCreated)
-        reset({})
+    }
 
+    const onClickAdd = async ( e ) => {
+        e.preventDefault()
+        /* setNewProduct({...newProduct,idCreator: usuario._id}) */
+        console.log(newProduct)
+        let createdProd = await clienteAxios.post('/create-product', newProduct)
+        console.log(createdProd.data)
+        addProdToList(createdProd.data)
+        setNewProduct({
+            idCreator: usuario._id,
+            idLocal: '',
+            productDescription: '',
+            boxSize: 0,
+            uom:'',
+            productFamily: '',
+        })
     }
 
 
@@ -55,7 +69,7 @@ export default function AddProduct() {
         <>
         <Box as='main'>
             <Text >Detalles de nuevo producto</Text>
-            <Box as='form' onSubmit={handleSubmit(onClickAdd)}>
+            <Box as='form' onSubmit={(e) => onClickAdd(e)}>
                 <FormControl as='fieldset' >
 
                     <FormControl id="idLocal" mb={5}>
@@ -64,7 +78,7 @@ export default function AddProduct() {
                             type='text' 
                             name='idLocal'
                             placeholder='Código de tu inventario'
-                            ref={register()}
+                            onChange={(e) => {handleChange(e)}}
                         />
                     </FormControl>
 
@@ -74,7 +88,7 @@ export default function AddProduct() {
                             type='text'
                             name='productDescription'
                             placeholder='Descripción: tipo, medidas, color, material, etc.' 
-                            ref={register()}
+                            onChange={(e) => {handleChange(e)}}
                         />
                         <FormHelperText>Haz una descripción detallada</FormHelperText>
                     </FormControl>
@@ -84,29 +98,25 @@ export default function AddProduct() {
                         <Input 
                             type='text'
                             name='uom'
-                            placeholder='Unidad de medida' 
-                            ref={register()} 
-                        />
+                            placeholder='Unidad de medida ej. kg, lt, paq.' 
+                            onChange={(e) => {handleChange(e)}}
+                        /> 
                     </FormControl>
 
-                                                <FormControl id='quantity'  pr={10} pl={10} width={40}>
-                                                    <Controller as={      
-                                                      <NumberInput min={1}  ref={register()} > {/* nChange={(data) => setQty(data)} */}
-                                                        <NumberInputField  />
-                                                        <NumberInputStepper>
-                                                            <NumberIncrementStepper />
-                                                            <NumberDecrementStepper />
-                                                        </NumberInputStepper>
-                                                    </NumberInput>  
-                                                    }
-                                                    name='quantity'
-                                                    control={control}
-                                                    />
-                                                </FormControl>  
+                    <FormControl id="boxSize" mb={5}>
+                        <FormLabel>Piezas por Unidad</FormLabel>
+                        <Input 
+                            type='number'
+                            name='boxSize'
+                            placeholder='Piezas por Unidad (agrega un número)' 
+                            onChange={(e) => {handleChange(e)}}
+                        /> 
+                    </FormControl>
+
 
                     <FormControl id="productFamily">
                         <FormLabel>Familia del producto</FormLabel>
-                        <Select colorScheme='yellow' ref={register()} placeholder="Selecciona el grupo de tu producto" name='productFamily'>
+                        <Select colorScheme='yellow' onChange={(e) => {handleChange(e)}} placeholder="Selecciona el grupo de tu producto" name='productFamily'>
                             <option value='Alimentos y Bebidas'>Alimentos y Bebidas</option>
                             <option value='Equipo Computo'>Equipo Computo</option>
                             <option value='Equipo Construcción'>Equipo Construcción</option>
@@ -117,13 +127,13 @@ export default function AddProduct() {
                     <Button type='submit'>Guardar nuevo producto</Button>
                 </FormControl>
             </Box>
-            <p>{
+            {/* <p>{
                 listCreated.map((e,id) => {
                     return(
                         <p key={id}>{e.productDescription}</p>
                     )
                 })
-            }</p>
+            }</p> */}
         </Box>
         </>
     )

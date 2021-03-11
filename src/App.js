@@ -5,7 +5,7 @@ import AuthState from './context/auth/AuthState'
 import AlertState from './context/alerts/AlertState'
 import tokenAuth from './services/token'
 import RutaPrivada from './UnauthApp/components/rutas/RutaPrivada'
-import { ThemeProvider, CSSReset, ChakraProvider } from '@chakra-ui/react'
+import { ThemeProvider, theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import Login from './UnauthApp/components/Login'
 import Signin from './UnauthApp/components/Signin'
@@ -30,19 +30,24 @@ export default function App() {
         <AuthState>
         <TenderState>
         <AlertState>
+    
             <Router>
 
-                <MainNav />
+        <MainNav />
 
                 <Switch>
+                    
                     <Route exact path='/login' component={Login}/>
                     <Route exact path='/signup' component={Signin}/>
-                    <RutaPrivada  exact path='/vendor' component={VendorProfile} />
-                    <Route exact path='/purchaser' component={PurchaserProfile} /> 
-                    <Route exact path='/' component={MainPage} />
+
+                    <Route exact path='/vendor' component={VendorProfile} />
+                    <Route  exact path='/purchaser' component={PurchaserProfile} /> 
                     <Route exact path='/tender/:idTender' component={TenderDetails} />
-                <Route exact path='/purchaser/item-list' component={ListProducts} />
+                    <RutaPrivada exact path='/purchaser/item-list' component={ListProducts} />
+
+                    <Route exact path='/' component={MainPage}/>
                 </Switch>
+                
             </Router>
         </AlertState>
         </TenderState>

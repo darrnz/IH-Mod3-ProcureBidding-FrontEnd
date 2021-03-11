@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
-    Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent, Link,
+    Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent, 
     useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
 /* import Profile from './AuthApp/components/Profile' */
 import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
-
-
-export default function MainNav() {
+import tokenAuth from '../../../services/token'
+import AuthContext from '../../../context/auth/AuthContext'
+import { Link, useHistory } from 'react-router-dom'
+import { MdPerson } from 'react-icons/md'
+export default function MainNav(props) {
 
     const { isOpen, onToggle } = useDisclosure();
+    const authContext = useContext(AuthContext)
+    const { mensaje, autenticado, iniciarSesion, cerrarSesion, usuario} = authContext;
+    const history = useHistory()
+    console.log(usuario)
+
+    const clickLogout = () => {
+        cerrarSesion()
+        props.history.push('/')
+    }
+
+    useEffect(() => {
+
+    }, [usuario])
 
     return (
         <Box>
@@ -51,50 +66,61 @@ export default function MainNav() {
             justify={'flex-end'}
             direction={'row'}
             spacing={6}>
-                {/* <Link to='/purchaser/item-list'>Lista PRoductos</Link>
-                <Link to='/purchaser'>Comprador</Link>
-                <Link to='/app/profile'>Vendedor</Link>
-                <Link to='/signup'></Link>
-                <Link to='/login'>Login</Link>
-                <Link to='/app/profile'>PRofileAdmin</Link> */}
-            <Button
-                as={'a'}
-                fontSize={'sm'}
-                fontWeight={400}
-                variant={'link'}
-                href={'/login'}>
-            Inicia Sesión
-            </Button>
+            {
 
-            <Button
-                as={'a'}
-                display={{ base: 'none', md: 'inline-flex' }}
-                fontSize={'sm'}
-                fontWeight={600}
-                color={'white'}
-                bg={'red.400'}
-                
-                href={'/signup'}
-                _hover={{
-                bg: 'pink.300',
-                }}>
-                Iniscribete
-            </Button>
+                autenticado?
+                <>
+                    <Box>
+                        { usuario == null? <p>Cargando</p>:
+                            <Flex>
+                            <MdPerson />
+                            <Text mr={5} leftIcon={<MdPerson />}> {usuario.email} </Text>
+                            </Flex>
+                        }
+                    </Box>
+                    <Button
+                        as={'a'}
+                        display={{ base: 'none', md: 'inline-flex' }}
+                        fontSize={'sm'}
+                        fontWeight={600}
+                        color={'white'}
+                        bg={'red.400'}
+                        
+                        onClick={()=>cerrarSesion()}
+                        _hover={{
+                        bg: 'pink.300',
+                        }}>
+                        Cerrar Sesión
+                    </Button>
+                </>
+                : 
+                <> 
+                    <Button
+                        as={'a'}
+                        fontSize={'sm'}
+                        fontWeight={400}
+                        variant={'link'}
+                        href={'/login'}>
+                    Inicia Sesión
+                    </Button>
 
-            {/* <Button
-                as={'a'}
-                display={{ base: 'none', md: 'inline-flex' }}
-                fontSize={'sm'}
-                fontWeight={600}
-                color={'white'}
-                bg={'red.400'}
-                
-                href={'/logput'}
-                _hover={{
-                bg: 'pink.300',
-                }}>
-                Iniscribete
-            </Button> */}
+                    <Button
+                        as={'a'}
+                        display={{ base: 'none', md: 'inline-flex' }}
+                        fontSize={'sm'}
+                        fontWeight={600}
+                        color={'white'}
+                        bg={'red.400'}
+                        
+                        href={'/signup'}
+                        _hover={{
+                        bg: 'pink.300',
+                        }}>
+                        Iniscribete
+                    </Button>
+                </>      
+
+            }
 
             </Stack>
         </Flex>

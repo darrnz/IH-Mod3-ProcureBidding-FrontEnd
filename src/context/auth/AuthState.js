@@ -84,7 +84,7 @@ const AuthState = props => {
     const iniciarSesion = async datos => {
         try{
             const respuesta = await clienteAxios.post('/api/auth', datos)
-            console.log(respuesta)
+            console.log(respuesta.data)
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data
@@ -94,14 +94,14 @@ const AuthState = props => {
 
         } catch(error){
             console.log(error)
-            const alerta = {
+            /* const alerta = {
                 msg: error.response.data.msg,
                 categoria: "alerta-error"
             }
             dispatch({
                 type: LOGIN_ERROR,
                 payload: alerta
-            })
+            }) */
         }
     }
 

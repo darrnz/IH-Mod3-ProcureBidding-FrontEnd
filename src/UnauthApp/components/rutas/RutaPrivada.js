@@ -17,7 +17,7 @@ export default function RutaPrivada ( { component: Component,...props } ) {
         <>
 
             <Route {...props} render={ props => !autenticado ? 
-                <Redirect to='/login' />
+                <Redirect to='/' />
                 : <Component {...props} />
             }/>
 

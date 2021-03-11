@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Box, Input, Button, Radio, RadioGroup, Stack, Text,
         FormControl, FormLabel,
-        List, ListItem, ListIcon, OrderedList, UnorderedList,
-        NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper,
+        List, ListItem, ListIcon, OrderedList, UnorderedList,Spacer, Grid,Modal,ModalBody,
+        NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper,GridItem,
         NumberDecrementStepper } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
 import { useParams } from 'react-router-dom'
@@ -10,7 +10,7 @@ import TenderContext from '../../../context/tenders/TenderContext'
 import { useForm, Controller, useFieldArray  } from 'react-hook-form'
 
 
-export default function AddDeleteProdTender() {
+export default function AddDeleteProdTender(props) {
     const { register, handleSubmit, watch, errors, control } = useForm();   
 
     const ctxTender = useContext(TenderContext)
@@ -67,47 +67,67 @@ export default function AddDeleteProdTender() {
 
 
     return (
-            <Box as='div' mx={30} d='flex' flexDirection='row' justifyContent='space-between'>
-                <Box>
-                    <Box as='h3'>Lista de productos</Box>
-                    <OrderedList >
+            <Grid templateColumns="repeat(2, 1fr)"  mx={30} d='flex' >
+                
+                <Box  w="100%" border='solid' borderColor='lightgrey' borderRadius={5} borderwidth={0.5} mr={2} >
+                    <Box as='div'  h={50} mt={2}>
+                        <Box as='b' mb={2} fontSize="lg" >Lista de productos</Box>
+                    </Box>
+                    <OrderedList mr={3} ml={2} >
                     {
                         listProducts.map((e,id) => {
                                     return(
-                                        <ListItem key={id} d='flex' justifyContent='spaceBetween'>
-                                            <Text>{id}</Text>
-                                            <Text>{e.productDescription}</Text>
-                                            <Box as='form'>
-                                            <Input type='text' name='idc' value={id} readOnly/>
-                                            <input type='number' defaultValue={1} onChange={(e) =>handleQty(e)} />
-                                            <Button ml={30} value={e.idLocal} type='submit' onClick={(ev) => selectPro(ev,e.idLocal)} >Añadir </Button>
-                                            </Box>
+                                        <ListItem key={id} d='flex' justifyContent='spaceBetween' mb={1}>
+                                            <Grid templateColumns="repeat(2, 1fr)">
+                                                <Input type='text' name='idc' value={id} d='none' readOnly/>
+                                                {/* <Box  w="100%">{e.idLocal}</Box> */}
+                                                <Box  w="100%" d='flex' textAlign='left'>{e.productDescription}</Box>
+                                                <Box  w="100%" as='form' d='flex' justifyContent='space-between' >
+                                                    <Input type='number' defaultValue={1} onChange={(e) =>handleQty(e)} />
+                                                    <Button mx={2} value={e.idLocal} 
+                                                    type='submit' size='sm' colorScheme="blue" 
+                                                    variant="outline" onClick={(ev) => selectPro(ev,e.idLocal)} >Añadir </Button>
+                                                </Box>
+                                            </Grid>
                                         </ListItem>
                                         )
                                 })
                             }
                     </OrderedList>    
                 </Box>
-                <Box>
+
+                <Spacer/>
+                <Box  w="100%" border='solid' borderColor='lightgrey' borderRadius={5} borderwidth={0.5} ml={2} d='flex' flexDirection='column'>
             
-                    <Box as='h3'>Productos añadidos</Box>
+                    <Box h={50} d='flex' flexDirection='column' mt={2} mb={6} alignContent='center' >
+                        <Box as='b' fontSize="lg" >Productos añadidos</Box>
+                        <Box><Button size='md' colorScheme="green" variant="outline"  my={2} onClick={(e)=>{onClickAdd(tenderProds,e)}}>
+                        Guardar Productos</Button></Box>
+                    </Box>
                     <OrderedList>
                         {
                         
                             tenderProds.map((e,id) => {
                                 return (
-                                    <ListItem key={id}>
-                                        <Text>{e.productDescription}</Text>
-                                        <Text>{e.quantity}</Text>
-                                        <Button  value={e.idLocal} type='submit'onClick={(ev) => onClickDelete(ev,e)}>Borrar</Button>
+                                    <ListItem key={id} d='flex' justifyContent='spaceBetween' alignContent='center' mb={1}>
+                                        
+                                            <Box  w="100%" mr={5} d='flex' textAlign='left'>{e.productDescription}</Box>
+                                            <Box  w="100%" d='flex' textAlign='left'>{e.quantity}</Box>
+                                            <Box w="100%"d='flex' justifyContent='space-between' >
+                                                <Button  value={e.idLocal} type='submit' 
+                                                size='sm' colorScheme="orange" 
+                                                variant="outline"
+                                                onClick={(ev) => onClickDelete(ev,e)}>
+                                            Borrar</Button></Box>
+                                        
                                     </ListItem>
                                 )
                             })
                         }    
 
                     </OrderedList>
-                    <Button onClick={(e)=>{onClickAdd(tenderProds,e)}}>Guardar Productos</Button>
+                    
                 </Box>
-            </Box> 
+            </Grid> 
     )
 }

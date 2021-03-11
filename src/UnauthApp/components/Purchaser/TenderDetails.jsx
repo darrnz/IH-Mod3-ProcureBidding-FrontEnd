@@ -3,7 +3,7 @@ import TenderContext from '../../../context/tenders/TenderContext'
 import { useParams } from 'react-router-dom'
 import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/layout'
 
-export default function TenderDetails() {
+export default function TenderDetails(props) {
 
     const context = useContext(TenderContext)
     const { tenderDetails, tenderInfo } = context

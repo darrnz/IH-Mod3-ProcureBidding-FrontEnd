@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from 'react'
-
+import React, { useState, useEffect, useContext } from 'react'
+import AuthContext from '../../../context/auth/AuthContext'
 import {
     Box, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Button} from "@chakra-ui/react"
 import AddProduct from './AddProduct'
 import { BsPlusCircle } from 'react-icons/bs'
 import { RiCloseCircleLine } from 'react-icons/ri'
-import axios from 'axios'
+import TenderContext from '../../../context/tenders/TenderContext'
 
 
-export default function ListProducts() {
+export default function ListProducts(props) {
 
+    const authContext = useContext(AuthContext)
+    const {  usuario, usuarioAutenticado } = authContext;
+
+    const ctxTender = useContext(TenderContext)
+    const { listProductsInv, listProducts } = ctxTender
+
+    useEffect(() => {
+        usuarioAutenticado()
+        listProductsInv()
+    }, [])
+
+
+    console.log(usuario)
     const [activeAdd, setActiveAdd] = useState(true)
-    const [productsList, setProductsList] = useState([])
 
     const handleAddPrdBtn = () => {
         activeAdd === true ? setActiveAdd(false): setActiveAdd(true)
     }
-    
-    useEffect(() => {
-        const listProducts = async() => {
-            let resSer = await axios.get('http://localhost:3001/list-products')
-            console.log(resSer)
-            setProductsList(resSer.data)
-            console.log(productsList)
-        }
-        listProducts()
-        console.log(productsList)
-    }, [])
-    console.log(productsList)
+
+    if(!usuario) return null;
     return (
         <>
             <Box>
@@ -48,14 +50,12 @@ export default function ListProducts() {
                     <Th>Familia</Th>
                     <Th>Pz x UND</Th>
                     <Th>UND</Th>
-                    <Th>Precio</Th>
-                    <Th>Última Act.</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     
-                        {
-                            productsList.map((e,id) => {
+                        {   listProducts==null? <p>cargando</p> :
+                            listProducts.map((e,id) => {
                                 return(
                                     <Tr key={id}>
                                     <Td>{e.idLocal}</Td>
@@ -63,8 +63,6 @@ export default function ListProducts() {
                                     <Td >{e.productFamily}</Td>
                                     <Td>{e.boxSize}</Td>
                                     <Td>{e.uom}</Td>
-                                    <Td>$$</Td>
-                                    <Td>{new Date(e.updatedAt).toDateString()}</Td>
                                     </Tr>
                                     )
                             })

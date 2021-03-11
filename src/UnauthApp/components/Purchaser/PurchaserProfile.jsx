@@ -25,12 +25,23 @@ export default function PurchaserProfile() {
  
     return (
         <>
-            <Box> 
-                <Link to='/purchaser/item-list'>Lista Productos</Link>
-            
-                <Box>
+            <Box>             
+                <Box my={10}>
+                    <Box>
+                        <Text mt={10} fontSize="3xl">Crea una nueva licitación</Text>
+                        <Box as='small'>Clickea en el botón  y escribe la inforación solicitado en los campos para generar una nueva licitación</Box>   
+                    </Box>
                     {
-                        tenderForm? <Button onClick={(e) => closeNewTender(e)}>Clear and Close</Button>  : <Button onClick={(e) => createTender(e)}>New Tender</Button>
+                        tenderForm? <Button size="lg"  colorScheme="red" 
+                                        variant="outline" mt={3} mb={3} 
+                                        onClick={(e) => closeNewTender(e)}>
+                                        Cerrar y borrar
+                                    </Button>  
+                                :   <Button mt={3} mb={3} size="lg" 
+                                        colorScheme="blue" variant="outline"  
+                                        onClick={(e) => createTender(e)}>
+                                        Empezar nueva licitación
+                                    </Button>
                     }
                     
                     {
@@ -39,7 +50,6 @@ export default function PurchaserProfile() {
                     
                 </Box>
                 <Box>
-                    <Text>Licitaciones actuales</Text>
                     <ListTenders/>
                 </Box>
                 <Box>

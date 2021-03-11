@@ -3,18 +3,24 @@ import{
     ADD_PRODUCT_TENDER, DELETE_PRODUCT_TENDER,
     ADD_VENDOR_TENDER, DELETE_VENDOR_TENDER,
     LIST_PRODS,PUSH_ELEM,LIST_VENDORS, SAVE_VENDOR_TENDER,
-    CLOSE_AND_CLEAR_TENDER, NEW_TENDER, SAVE_AND_SEND_TENDER
+    CLOSE_AND_CLEAR_TENDER, NEW_TENDER, SAVE_AND_SEND_TENDER,
+    ADD_PRODUCT_TO_LIST
 } from '../../types'
 
 export default (state, action) => {
     switch (action.type) {
-
+        case ADD_PRODUCT_TO_LIST:
+            return {
+                ...state,
+                listProducts: [...state.listProducts, action.payload]
+            }
         case NEW_TENDER:
             return {
                 ...state,
                 tenderForm: true,
                 productsTenForm: false,
                 vendorsTenForm: false,
+                btnSendTen:false,
                 listProducts:[],
                 newTenderId:'',
                 tenderVendor: [],
@@ -33,6 +39,7 @@ export default (state, action) => {
                 tenderVendor: [],
                 listvendors: [],
                 tenderProds: [],
+                btnSendTen:false,
             }
 
         case LIST_PRODS: 
@@ -49,7 +56,7 @@ export default (state, action) => {
         case LIST_TENDERS:
                 return {
                     ...state,
-                    tenders:[...state, action.payload]
+                    tenders:[...state.tenders, action.payload]
                 }
             
         case TENDER_DETAILS:
@@ -61,6 +68,7 @@ export default (state, action) => {
             return {
                 ...state,
                 newTenderId: action.payload._id,
+        
                 productsTenForm: true,
                 tenderInfo: action.payload
             }
@@ -100,7 +108,8 @@ export default (state, action) => {
         case SAVE_VENDOR_TENDER:
             return {
                 ...state,
-                vendorsTenForm: false
+                vendorsTenForm: false,
+                btnSendTen:true
             }
             
         default:

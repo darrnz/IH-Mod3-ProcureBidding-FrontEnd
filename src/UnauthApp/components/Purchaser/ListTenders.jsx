@@ -5,7 +5,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
-export default function ListTenders() {
+export default function ListTenders(props) {
     
     const [listUserTenders, setListUserTenders] = useState([])
 
@@ -22,7 +22,8 @@ export default function ListTenders() {
     
     return (
         <>
-                <Box mt={5} d='flex' flexDir='row' justifyContent='space-around' alignContent='center'>
+            <Text mt={10} fontSize="3xl">Licitaciones actuales</Text>  
+                <Box mt={5} mx={40} d='flex' flexDir='row' justifyContent='space-around' alignContent='center'>
                     <Table variant="simple">
                     <Thead>
                         <Tr>

@@ -6,7 +6,8 @@ import{
     ADD_PRODUCT_TENDER, DELETE_PRODUCT_TENDER,
     ADD_VENDOR_TENDER, DELETE_VENDOR_TENDER,
     LIST_PRODS,PUSH_ELEM, LIST_VENDORS, SAVE_VENDOR_TENDER,
-    CLOSE_AND_CLEAR_TENDER, NEW_TENDER, SAVE_AND_SEND_TENDER
+    CLOSE_AND_CLEAR_TENDER, NEW_TENDER, SAVE_AND_SEND_TENDER,
+    ADD_PRODUCT_TO_LIST
 } from '../../types'
 import TenderReducer from './TenderReducer'
 
@@ -17,6 +18,7 @@ export default function TenderState (props) {
         tenderForm: false,
         productsTenForm: false,
         vendorsTenForm: false,
+        btnSendTen:false,
         listProducts:[],
         newTenderId:'',
         tenderInfo:[],
@@ -27,6 +29,13 @@ export default function TenderState (props) {
     }
 
     const [state, dispatch] = useReducer(TenderReducer, initialState)
+
+    const addProdToList = elem => {
+        dispatch({
+            type:ADD_PRODUCT_TO_LIST, 
+            payload: elem
+        })
+    }
 
     const newTender = () => {
         dispatch({
@@ -197,7 +206,8 @@ export default function TenderState (props) {
             tenderForm: state.tenderForm,
             productsTenForm: state.productsTenForm,
             vendorsTenForm: state.vendorsTenForm,
-
+            btnSendTen: state.btnSendTen,
+            
             tenderInfo:state.tenderInfo,
             tenders: state.tenders,
             newTenderId: state.newTenderId,
@@ -207,6 +217,7 @@ export default function TenderState (props) {
             listProducts: state.listProducts,
             listvendors: state.listvendors,
 
+            addProdToList,
             saveVendorsOnTender,
             closeAndClearTender,
             newTender,

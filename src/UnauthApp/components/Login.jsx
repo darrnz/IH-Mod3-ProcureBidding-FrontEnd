@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Box, Input, Button, Heading, useToast} from '@chakra-ui/react'
+import { Box, Input, Button,Text, useToast, InputGroup, InputLeftElement, Heading } from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom'
 import AlertaContext from '../../context/alerts/AlertContext'
 import AuthContext from '../../context/auth/AuthContext'
@@ -13,18 +13,22 @@ export default function Login(props) {
     const { mensaje, autenticado, iniciarSesion } = authContext;
 
     const toast = useToast() //chakra
-    const history = useHistory()
+    
 
     useEffect(() => {
-        if(autenticado){
-            props.history.push('/vendor')
+        if(autenticado ) {
+            console.log(usuario)
+            usuario.role === 'Vendor' ? 
+                props.history.push('/vendor')
+            :
+                props.history.push('/purchaser')
         }
 
         if(mensaje){
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
 
-    }, [mensaje, autenticado, history])
+    }, [mensaje, autenticado, props.history])
 
     const [usuario, guardarUsuario] = useState({
         email: "",
@@ -52,32 +56,47 @@ export default function Login(props) {
 
 
     return (
-        <Box as='main' d='flex' w='100vw' h='100vh' alignContent='center' justifyContent='center' >
-            <Heading as='h1'>
-                Welcomeback! Please enter your data to login.
+        <Box as='div' mt={50} d='flex' flexDir='column' alignContent='center' justifyContent='center'  alignItems='center'>
+            <Heading as='h1' >
+                ¡Bienvendo!
             </Heading>
-            {alerta ?  
-                (
-                    <div className={`alerta ${alerta.categoria}`}>
-                        {alerta.msg}
-                    </div>
-                )
-            : null}
-            <Box as='form' d='flex' flexDirection='column' justifyContent='center' alignContent='center'>
+            <Box as='h6' >
+                Inicia Sesión!
+            </Box>
+            
+            <Box mt={50} p={5} as='form' w={300} pb={5} d='flex' 
+                flexDirection='column' 
+                justifyContent='center' alignContent='center'
+                alignItems='center'>
+
+                <InputGroup d='flex' alignItems='center'>
+                    <InputLeftElement
+                    pointerEvents="none"
+                    color="gray.500"
+                    fontSize="1.6em"
+                    children="@"
+                    />
+                    <Input 
+                        size="lg" mt={2}
+                        type='email'
+                        name='email'
+                        onChange={onChange}
+                        placeholder='name@email.com'
+                        value={email}
+                    />
+                </InputGroup>
+
+
                 <Input 
-                    type='email'
-                    name='email'
-                    onChange={onChange}
-                    placeholder='name@email.com'
-                    value={email}
-                />
-                <Input 
+                    size="lg"
+                    mt={2}
                     type='password'
                     name='password'
                     onChange={onChange}
                     placeholder='*********'
                     value={password}
                 />
+                <Box mt={7}>
                 <Button 
                     type='submit'
                     onClick={onSubmit}
@@ -85,7 +104,23 @@ export default function Login(props) {
                     >
                     Login
                 </Button>
+                </Box>
             </Box>
+
+            {alerta ?  
+                (
+                    <Box>
+                    <Box className={toast({
+                        description: `alerta ${alerta.categoria}`,
+                        title: `${alerta.msg}`,
+                        duration:2000,
+                        isClosable: true,
+                        })}>
+                        
+                    </Box>
+                    </Box>
+                )
+                : null}
         </Box>
     )
 }

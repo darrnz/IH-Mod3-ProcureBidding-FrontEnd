@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Box, Input, Button, Radio, RadioGroup, Stack } from '@chakra-ui/react'
+import { Box, Input, Button, Radio, RadioGroup, Stack, useToast, Heading, Text,
+    FormControl, FormLabel, HStack
+} from '@chakra-ui/react'
 import { Link, useHistory, Redirect } from 'react-router-dom'
 
 import AlertaContext from '../../context/alerts/AlertContext.js'
@@ -16,6 +18,7 @@ export default function Signin(props) {
     const { mensaje, autenticado, registrarUsuario } = authContext;
 
     const history = useHistory()
+    const toast = useToast() 
 
     const [value, setValue] = React.useState('Admin')
     console.log(value)
@@ -45,15 +48,16 @@ export default function Signin(props) {
     }
 
     useEffect(() => {
+        console.log(usuario)
         if(autenticado){
-            history.push('/vendor')
+            props.history.push('/purchaser')
         }
 
         if(mensaje){
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
 
-    }, [mensaje, autenticado, history])
+    }, [mensaje, autenticado, props.history])
     
     const { role, zipCode, firstName,rfc, lastName, address, email, companyName, password, confirmar } = usuario
 
@@ -93,26 +97,50 @@ export default function Signin(props) {
     return (
         <>
         
-        <Box as='main' d='flex' w='100vw' h='100vh' alignContent='center' justifyContent='center'>
+        <Box as='main' d='flex' w='100vw' 
+        alignContent='center' flexDirection='column' 
+        justifyContent='center' alignItems='center'
+        >
         {alerta ?  
                 (
-                    <div className={`alerta ${alerta.categoria}`}>
-                        {alerta.msg}
-                    </div>
+                    <Box className={toast({
+                        description: `alerta ${alerta.categoria}`,
+                        title: `${alerta.msg}`,
+                        duration:2000,
+                        isClosable: true,
+                        })}>
+                        
+                    </Box>
+                    
                 )
             : null}
-            <Box onSubmit={ onSubmit } as='form' d='flex' flexDirection='column' justifyContent='center' alignContent='center'>
+
+                <Box my={10}>
+                    <Heading as='h1' >
+                    ¡Bienvendo, registrate!
+                </Heading>
+                <Text as='small'>Nunca compartiremos tus datos</Text>
+                </Box>
+
+            <Box onSubmit={ onSubmit } as='form' d='flex' 
+                flexDirection='column' justifyContent='center' 
+                alignContent='center' width={450}
+                >
                 
-                <RadioGroup name='role'   colorScheme="green" onChange={(value) => setrol(value) }>
-                    <Stack direction='row' d='flex' alignContent='center' justifyContent='center' >
-                        <Radio name='role' value='Admin' colorScheme="green" defaultChecked='true'>
-                            Client
-                        </Radio>
-                        <Radio name='role' value='Vendor' colorScheme="red">
-                            Vendor
-                        </Radio>
-                    </Stack>
-                </RadioGroup>
+                <FormControl as="fieldset" pb={5}>
+                    <FormLabel as="legend" textAlign='center'>Selecciona tu tipo de usuario</FormLabel>
+                    <RadioGroup name='role' colorScheme="green" onChange={(value) => setrol(value) }>
+                        <HStack spacing="24px" direction='row' d='flex' alignContent='center' justifyContent='center' >
+                            <Radio fontSize="lg" name='role' value='Admin' colorScheme="green" defaultChecked='true'>
+                                Client
+                            </Radio>
+                            <Radio name='role' value='Vendor' colorScheme="red">
+                                Vendor
+                            </Radio>
+                        </HStack>
+                    </RadioGroup>
+                </FormControl>  
+
                 <Input 
                     type='text'
                     name='firstName'
