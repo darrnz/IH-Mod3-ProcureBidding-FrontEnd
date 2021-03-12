@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Input, Button,     
-        List, ListItem, ListIcon, OrderedList, UnorderedList,Spacer, Grid,
+import { Box, Input, Button, ListItem,  OrderedList, Spacer, Grid,
         } from '@chakra-ui/react'
 import TenderContext from '../../../context/tenders/TenderContext'
 

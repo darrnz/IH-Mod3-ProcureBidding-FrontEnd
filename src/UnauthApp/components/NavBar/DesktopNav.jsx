@@ -2,12 +2,9 @@ import React, { useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import DesktopSubNav from './DesktopSubNav'
 import NavItem from './NavItem'
-import {
-    Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent,
-    useColorModeValue,useBreakpointValue,useDisclosure,
-    BreadcrumbItem, Breadcrumb
+import { Box, Flex, Text,IconButton, Button,Stack,
+        BreadcrumbItem, Breadcrumb
 } from '@chakra-ui/react';
-import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 import AuthContext from '../../../context/auth/AuthContext'
 import Loader from '../../layout/Loader';
@@ -15,7 +12,7 @@ import Loader from '../../layout/Loader';
 export default function DesktopNav () {
 
     const authContext = useContext(AuthContext)
-    const { mensaje, autenticado, registrarUsuario, usuario, usuarioAutenticado } = authContext;
+    const { usuario, usuarioAutenticado } = authContext;
 
     useEffect(() => {
         usuarioAutenticado()

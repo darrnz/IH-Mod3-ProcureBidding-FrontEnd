@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { Box, Input, Button, Radio, RadioGroup, Stack, useToast, Heading, Text,
+import { Box, Input, Button, Radio, RadioGroup,  useToast, Heading, Text,
     FormControl, FormLabel, HStack, Image
 } from '@chakra-ui/react'
 import { Link, useHistory, Redirect } from 'react-router-dom'

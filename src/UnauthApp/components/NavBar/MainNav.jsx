@@ -15,7 +15,6 @@ export default function MainNav(props) {
     const authContext = useContext(AuthContext)
     const { autenticado, cerrarSesion, usuario} = authContext;
     const history = useHistory()
-    console.log(usuario)
 
     const clickLogout = () => {
         cerrarSesion()

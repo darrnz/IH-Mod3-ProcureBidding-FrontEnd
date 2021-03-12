@@ -2,14 +2,12 @@ import {
     Box,
     chakra,
     Container,
-    Link,
     Stack,
     Text,
     useColorModeValue,
-    VisuallyHidden,
   } from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import React, { ReactNode, } from 'react';    
+import { FaTwitter } from 'react-icons/fa';
+import React from 'react';    
 import Logo from './Logo';
 import SocialButton from './SocialButton '
 

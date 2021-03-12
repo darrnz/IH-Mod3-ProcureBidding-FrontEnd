@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Box, Input, Button,Text, useToast, InputGroup, InputLeftElement, Heading, Image } from '@chakra-ui/react'
+import { Box, Input, Button, useToast, InputGroup, InputLeftElement, Heading, Image } from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom'
 import AlertaContext from '../../context/alerts/AlertContext'
 import AuthContext from '../../context/auth/AuthContext'

@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Input, Button, Radio, RadioGroup, Stack, Text,
-        FormControl, FormLabel,Grid,
-        List, ListItem, ListIcon, OrderedList, UnorderedList, Spacer } from '@chakra-ui/react'
+import { Box, Button, Text, Grid,
+        List, ListItem, ListIcon, OrderedList, Spacer } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
 import TenderContext from '../../../context/tenders/TenderContext'
-import { useForm, Controller, useFieldArray  } from 'react-hook-form'
-
-
 
 export default function AddDeleteVendorTender(props) { 
 
@@ -40,7 +36,7 @@ export default function AddDeleteVendorTender(props) {
     return (
         <>
         
-        {console.log(listvendors)}
+        
         {   
             !listvendors ? <Text>CARGANDO...</Text> : 
             (

@@ -48,7 +48,7 @@ export default (state, action) => {
                     listProducts: [...action.payload]
                 }
         case LIST_VENDORS: 
-            console.log(action.payload)
+            
                 return{
                     ...state,
                     listvendors: [...action.payload]
@@ -73,7 +73,7 @@ export default (state, action) => {
                 tenderInfo: action.payload
             }
         case PUSH_ELEM:
-            console.log(action.payload)
+            
             return {
                 ...state,
                 tenderProds: [action.payload, ...state.tenderProds ]

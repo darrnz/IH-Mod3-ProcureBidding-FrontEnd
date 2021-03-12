@@ -82,7 +82,7 @@ export default function TenderState (props) {
 
     const listUserTenders = async userId => {
         try {
-            console.log(userId)
+            
             let loggedId =  userId._id
             const resSer = await clienteAxios.get(`/profile/user-tenders/${loggedId}`)
             dispatch({
@@ -155,7 +155,7 @@ export default function TenderState (props) {
                 payload: idProd
             })
         } catch (error) {
-            console.log(error)
+           
         }
     }
 
