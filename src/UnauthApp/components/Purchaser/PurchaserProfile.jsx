@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from 'react'
-import { Box, Input, Button, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
+import { Box, Input, Button, Text } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
-import { Switch, Route, Redirect, Link } from 'react-router-dom'
 import ListTenders from './ListTenders'
 import AddTender from './AddTender'
-import TenderDetails from './TenderDetails'
 import TenderContext from '../../../context/tenders/TenderContext'
 import AuthContext from '../../../context/auth/AuthContext'
 import Loader from '../../layout/Loader'
@@ -38,7 +36,7 @@ export default function PurchaserProfile(props) {
     }
 
     if(usuario == null) {
-       return(<Loader />)
+        return(<Loader />)
     }
     if(usuario.role==='Vendor') {
         history.push('/vendor')
@@ -66,16 +64,14 @@ export default function PurchaserProfile(props) {
                     }
                     
                     {
-                        tenderForm?<AddTender/>:''
+                        tenderForm?<AddTender/> : ''
                     }
                     
                 </Box>
                 <Box mb={10}>
                     <ListTenders user={usuario}/>
                 </Box>
-                <Box>
-                    <TenderDetails />
-                </Box>
+
             </Box>
         </>
     )

@@ -21,7 +21,7 @@ export default function Signin(props) {
     const toast = useToast() 
 
     const [value, setValue] = React.useState('Admin')
-    console.log(value)
+    
     function setrol(value) {
         guardarUsuario({...usuario,role:value})
     }   
@@ -44,11 +44,11 @@ export default function Signin(props) {
             ...usuario,
             [e.target.name]: e.target.value
         })
-        console.log(usuario)
+        
     }
 
     useEffect(() => {
-        console.log(usuario)
+        
         if(autenticado){
             props.history.push('/purchaser')
         }
@@ -98,10 +98,10 @@ export default function Signin(props) {
         <>
         
         <Box as='main' d='flex' w='100vw' 
-        alignContent='center' flexDirection='column' 
-        justifyContent='center' alignItems='center'
+            alignContent='center' flexDirection='column' 
+            justifyContent='center' alignItems='center'
         >
-        {alerta ?  
+            {alerta ?  
                 (
                     <Box className={toast({
                         description: `alerta ${alerta.categoria}`,
@@ -113,14 +113,15 @@ export default function Signin(props) {
                     </Box>
                     
                 )
-            : null}
-            <Image src={logoLog} mb={1}/>
-                <Box my={10}>
-                    <Heading as='h1' >
-                    ¡Bienvendo, registrate!
+                : null
+            }
+            <Image src={logoLog} mb={0}/>
+            <Box my={10}>
+                <Heading as='h1' >
+                    ¡Bienvendo, regístrate!
                 </Heading>
                 <Text as='small'>Nunca compartiremos tus datos</Text>
-                </Box>
+            </Box>
 
             <Box onSubmit={ onSubmit } as='form' d='flex' 
                 flexDirection='column' justifyContent='center' 
@@ -208,10 +209,13 @@ export default function Signin(props) {
                     value={rfc}
                 />
 
-                <Button 
-                    type='submit'
-                    
-                >Registrarme</Button>    
+                <Box mt={5}>
+                    <Button 
+                        type='submit'
+                        Button size="lg"  colorScheme="blue" variant="outline"
+                        width="250px"
+                    >Registrarme</Button>
+                </Box>    
             </Box>
         </Box>
     </>

@@ -12,9 +12,7 @@ export default function AddDeleteProdTender(props) {
 
 
     const [valueId, setValueId] = React.useState('')
-    /* function setid(valueId) {
-        setForm({...form, idProduct:valueId})
-    } */
+
     const [quantitySet, setQuantitySet] = useState(1)
     const handleQty = (event) => {
         event.preventDefault()
@@ -62,7 +60,9 @@ export default function AddDeleteProdTender(props) {
     return (
             <Grid templateColumns="repeat(2, 1fr)"  mx={30} d='flex' >
                 
-                <Box  w="100%" border='solid' borderColor='lightgrey' borderRadius={5} borderwidth={0.5} mr={2} >
+                <Box h={450} w="100%"  border='solid' borderColor='lightgrey' borderRadius={5} borderwidth={0.5} mr={2}
+                    style={{overflow:'auto'}}
+                >
                     <Box as='div'  h={50} mt={2}>
                         <Box as='b' mb={2} fontSize="lg" >Lista de productos</Box>
                     </Box>
@@ -73,24 +73,24 @@ export default function AddDeleteProdTender(props) {
                                         <ListItem key={id} d='flex' justifyContent='spaceBetween' mb={1}>
                                             <Grid templateColumns="repeat(2, 1fr)">
                                                 <Input type='text' name='idc' value={id} d='none' readOnly/>
-                                                {/* <Box  w="100%">{e.idLocal}</Box> */}
                                                 <Box  w="100%" d='flex' textAlign='left'>{e.productDescription}</Box>
-                                                <Box  w="100%" as='form' d='flex' justifyContent='space-between' >
+                                                <Box  w="100%" as='form' d='    flex' justifyContent='space-between' >
                                                     <Input type='number' defaultValue={1} onChange={(e) =>handleQty(e)} />
                                                     <Button mx={2} value={e.idLocal} 
                                                     type='submit' size='sm' colorScheme="blue" 
-                                                    variant="outline" onClick={(ev) => selectPro(ev,e.idLocal)} >Añadir </Button>
+                                                    variant="outline" onClick={(ev) => selectPro(ev,e.idLocal)}> Añadir </Button>
                                                 </Box>
                                             </Grid>
                                         </ListItem>
-                                        )
+                                    )
                                 })
                             }
                     </OrderedList>    
                 </Box>
 
                 <Spacer/>
-                <Box  w="100%" border='solid' borderColor='lightgrey' borderRadius={5} borderwidth={0.5} ml={2} d='flex' flexDirection='column'>
+                <Box h={450}  w="100%" border='solid' borderColor='lightgrey' borderRadius={5}
+                    style={{overflow:'auto'}} borderwidth={0.5} ml={2} d='flex' flexDirection='column'>
             
                     <Box h={50} d='flex' flexDirection='column' mt={2} mb={6} alignContent='center' >
                         <Box as='b' fontSize="lg" >Productos añadidos</Box>
@@ -102,7 +102,9 @@ export default function AddDeleteProdTender(props) {
                         
                             tenderProds.map((e,id) => {
                                 return (
-                                    <ListItem key={id} d='flex' justifyContent='spaceBetween' alignContent='center' mb={1}>
+                                    <ListItem key={id} d='flex' justifyContent='spaceBetween' 
+                                        alignContent='center' mb={1} border='solid' 
+                                        borderColor='lightgray' p={5} borderRadius={6} >
                                         
                                             <Box  w="100%" mr={5} d='flex' textAlign='left'>{e.productDescription}</Box>
                                             <Box  w="100%" d='flex' textAlign='left'>{e.quantity}</Box>

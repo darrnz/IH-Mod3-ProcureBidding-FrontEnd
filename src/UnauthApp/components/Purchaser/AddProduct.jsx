@@ -11,9 +11,6 @@ export default function AddProduct(props) {
     const ctxTender = useContext(TenderContext)
     const { listProductsInv, listProducts, addProdToList } = ctxTender
 
-    console.log(usuario) 
-    
-    
     const [value, setValua] = React.useState('Equipo Computo')
     function setFam(value) {
         setNewProduct({...newProduct, productFamily: value})
@@ -40,14 +37,13 @@ export default function AddProduct(props) {
             ...newProduct,
             [e.target.name]: e.target.value
         })
-        console.log(newProduct)
+        
     }
 
     const onClickAdd = async ( e ) => {
         e.preventDefault()
-        console.log(newProduct)
+       
         let createdProd = await clienteAxios.post('/create-product', newProduct)
-        console.log(createdProd.data)
         addProdToList(createdProd.data)
         setNewProduct({
             idCreator: usuario._id,
@@ -65,7 +61,7 @@ export default function AddProduct(props) {
         <Box as='main'  d='flex' alignItems='center' flexDir='column'>
             
             <Box as='form'  w={1000} d='flex' alignItems='center'
-                 alignContent='center' bg='white'  boxShadow="lg" onSubmit={(e) => onClickAdd(e)}>
+                alignContent='center' bg='white'  boxShadow="lg" onSubmit={(e) => onClickAdd(e)}>
                 <FormControl as='fieldset' border='solid' 
                         borderColor='lightgray' p={5} borderRadius={6}  >
                     <Text my={2} fontSize="xl">Agrega los detalles del nuevo producto</Text>

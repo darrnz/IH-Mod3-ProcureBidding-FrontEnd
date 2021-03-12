@@ -14,18 +14,16 @@ export default function VendorProfile(props) {
 
     const ctxTender = useContext(TenderContext)
     const { tenders, listUserTenders } = ctxTender
-    console.log(tenders)
     useEffect(() => {
         
         
     }, [])
-   
+
 
 
     if(usuario.role==='Admin') {
         history.push('/purchaser')
     }
-   
     return (
         <div>
 
@@ -58,8 +56,6 @@ export default function VendorProfile(props) {
                                 <Td>{e.status}</Td>
                                 <Td  d='flex' flexDir='row' justifyContent='space-evenly' alignContent='center' alignItems='center'>
                                     <Button><Link to={`/tender/${e._id}`}>Detalles</Link></Button>
-                                    <Button>Editar</Button>
-                                    
                                 </Td>
                                 <Td>{new Date(e.updatedAt).toDateString()}</Td>
                             </Tr>  

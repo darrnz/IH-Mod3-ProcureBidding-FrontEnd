@@ -58,7 +58,6 @@ export default function TenderState (props) {
     const listProductsInv = async() => {
         try {
             const resSer = await clienteAxios.get('/list-products')
-            console.log(resSer.data)
             dispatch({
                 type:LIST_PRODS,
                 payload: resSer.data
@@ -71,7 +70,6 @@ export default function TenderState (props) {
     const existVendors = async() => {
         try {
             const resSer = await clienteAxios.get('/list-vendors')
-            console.log(resSer.data)
             dispatch({
                 type: LIST_VENDORS,
                 payload: resSer.data
@@ -99,8 +97,7 @@ export default function TenderState (props) {
     const createTender = async form => {
         try {
             const resSer = await clienteAxios.post('/profile/create-tender', form)
-            console.log(resSer)
-            console.log(resSer.data._id)
+            
             dispatch({
                 type:CREATE_TENDER,
                 payload: resSer.data
@@ -113,9 +110,9 @@ export default function TenderState (props) {
 
     const tenderDetails = async (idTender) => {
         try {
-            console.log(idTender)
+            
             const resSer = await clienteAxios.get(`/profile/tender-details/${idTender}`)
-            console.log(resSer)
+            
             
             dispatch({
                 type:TENDER_DETAILS,
@@ -127,8 +124,7 @@ export default function TenderState (props) {
     }
 
     const pushProd = elem =>{
-        console.log(typeof elem)
-        //tenderProds.push(elem)
+        
         dispatch({
             type: PUSH_ELEM,
             payload: elem
@@ -137,11 +133,11 @@ export default function TenderState (props) {
 
     const addProductTender = async (form) => {
         try {
-            console.log(form)
+            
             let tenderID = state.newTenderId
-            console.log(tenderID)
+            
             const resSer = await clienteAxios.post(`/profile/create-tender/${tenderID}/add-product`, form)
-            console.log(resSer)
+            
             dispatch({
                 type: ADD_PRODUCT_TENDER,
                 payload: resSer.data
@@ -153,7 +149,7 @@ export default function TenderState (props) {
 
     const deleteProductTender = idProd => {
         try {
-            console.log(idProd)
+            
             dispatch({
                 type: DELETE_PRODUCT_TENDER,
                 payload: idProd
@@ -179,10 +175,7 @@ export default function TenderState (props) {
     const addVendorTender = async idVendor => {
         try {
             let tenderID = state.newTenderId
-            console.log(tenderID)
-            console.log(idVendor)
             const resSer = await clienteAxios.put(`/profile/create-tender/${tenderID}/add-vendor/${idVendor}`)
-            console.log(resSer.data)
             dispatch({
                 type: ADD_VENDOR_TENDER,
                 payload: resSer.data

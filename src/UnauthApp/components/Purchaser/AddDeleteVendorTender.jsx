@@ -14,8 +14,7 @@ export default function AddDeleteVendorTender(props) {
     const ctxTender = useContext(TenderContext)
     const { newTenderId, listvendors, saveVendorsOnTender,
             deleteVendorTender, addVendorTender, tenderVendor, } = ctxTender
-        console.log(listvendors)
-
+        
     const [idVendorSet, setIdVendorSet] = useState({})
     useEffect(() => {
         
@@ -25,11 +24,8 @@ export default function AddDeleteVendorTender(props) {
 
     const selectVend = (e, idVendorC) => {
         e.preventDefault()
-/*         setIdVendorSet({idVendor: idVendorC})
-            console.log(idVendorSet) */
         addVendorTender(idVendorC)
     }
-
     const deleteVend = (e, idVendor) => {
         e.preventDefault()
         deleteVendorTender(idVendor)
@@ -77,9 +73,11 @@ export default function AddDeleteVendorTender(props) {
                 <Box  w="100%" border='solid' borderColor='lightgrey' borderRadius={5} borderwidth={0.5} ml={2} d='flex' flexDirection='column'>
                     <Box mt={2} h={50} d='flex' flexDirection='column' mb={6} alignContent='center' >       
                         <Box as='b' fontSize="lg" >Proveedores añadidos</Box>
+                        <Box as='small'>Selecciona al menos 2 proveedores</Box>
                         <Box>
-                            <Button size='md' colorScheme="green" variant="outline"  
-                            my={2} onClick={(e)=>{saveVendors(e)}}>Guardar Proveedores</Button>
+                            {tenderVendor.length > 1 ? <Button size='md' colorScheme="green" variant="outline"  
+                            my={2} onClick={(e)=>{saveVendors(e)}}>Guardar Proveedores</Button> : ''}
+                            
                         </Box>    
                     </Box>
                     <OrderedList mt={5}  mr={3} ml={2}>

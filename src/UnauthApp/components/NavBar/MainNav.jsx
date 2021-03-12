@@ -61,7 +61,6 @@ export default function MainNav(props) {
                 direction={'row'}
                 spacing={6}>
                 {
-
                     autenticado?
                     <Flex mr={10} justifyContent='space-evenly'>
                         <Box mr={10}  alignItems='center'  justifyContent='center' >
@@ -119,12 +118,11 @@ export default function MainNav(props) {
                             fontWeight={600}
                             color={'white'}
                             bg={'red.400'}
-                            
                             href={'/signup'}
                             _hover={{
                             bg: 'pink.300',
                             }}>
-                            Inscribete
+                            Inscríbete
                         </Button>
                     </Flex>      
 

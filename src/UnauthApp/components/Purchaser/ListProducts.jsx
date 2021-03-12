@@ -24,7 +24,7 @@ export default function ListProducts(props) {
     }, [])
 
 
-    console.log(usuario)
+    
     const [activeAdd, setActiveAdd] = useState(true)
 
     const handleAddPrdBtn = () => {

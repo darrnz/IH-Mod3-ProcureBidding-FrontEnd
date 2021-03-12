@@ -13,7 +13,7 @@ export default function ListTenders(props) {
 
     const ctxTender = useContext(TenderContext)
     const { tenders, listUserTenders } = ctxTender
-    console.log(tenders)
+    
     useEffect(() => {
         
         

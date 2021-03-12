@@ -13,16 +13,13 @@ export default function Login(props) {
     const authContext = useContext(AuthContext)
     const { mensaje, autenticado, iniciarSesion } = authContext;
 
-    const toast = useToast() //chakra
+    const toast = useToast() 
     
 
     useEffect(() => {
         if(autenticado ) {
-            console.log(usuario)
-
-                props.history.push('/purchaser')
+            props.history.push('/purchaser')
         }
-
         if(mensaje){
             mostrarAlerta(mensaje.msg, mensaje.categoria)
         }
@@ -87,7 +84,6 @@ export default function Login(props) {
                     />
                 </InputGroup>
 
-
                 <Input 
                     size="lg"
                     mt={2}
@@ -98,13 +94,15 @@ export default function Login(props) {
                     value={password}
                 />
                 <Box mt={7}>
-                <Button 
-                    type='submit'
-                    onClick={onSubmit}
-                    colorScheme="blue"  size="md"
+                    <Button 
+                        type='submit'
+                        onClick={onSubmit}
+                        size="lg"  colorScheme="blue" variant="outline"
+                        width="250px"
+                        fontSize='lg'
                     >
-                    Login
-                </Button>
+                        Login
+                    </Button>
                 </Box>
             </Box>
 
