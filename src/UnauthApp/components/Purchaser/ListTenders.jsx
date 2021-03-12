@@ -4,6 +4,7 @@ import { Box, Button, Text,
 import { Link } from 'react-router-dom'
 import TenderContext from '../../../context/tenders/TenderContext'
 import AuthContext from '../../../context/auth/AuthContext'
+import Loader from '../../layout/Loader'
 
 export default function ListTenders(props) {
     
@@ -30,14 +31,14 @@ export default function ListTenders(props) {
                         <Th>Fecha Inicio</Th>
                         <Th>Fecha Fin</Th>
                         <Th>Status</Th>
-                        <Th>Detalle/editar</Th>
+                        <Th>Detalle</Th>
                         <Th>Última Act.</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
 
                 {   
-                    usuario == null ? <p>cargando...</p> :
+                    usuario == null ? <Loader/> :
                     usuario.idTender.map((e,id) => {
                         return (
                             <Tr key={e._id}>
@@ -47,8 +48,7 @@ export default function ListTenders(props) {
                                 <Td>{e.status}</Td>
                                 <Td  d='flex' flexDir='row' justifyContent='space-evenly' alignContent='center' alignItems='center'>
                                     <Button><Link to={`/tender/${e._id}`}>Detalles</Link></Button>
-                                    <Button>Editar</Button>
-                                    
+                                    {/* <Button>Editar</Button> */}
                                 </Td>
                                 <Td>{new Date(e.updatedAt).toDateString()}</Td>
                             </Tr>  

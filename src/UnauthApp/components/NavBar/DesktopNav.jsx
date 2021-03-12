@@ -1,81 +1,94 @@
 import React, { useContext, useEffect } from 'react'
-import {Link  } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import DesktopSubNav from './DesktopSubNav'
 import NavItem from './NavItem'
 import {
     Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent,
-    useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
+    useColorModeValue,useBreakpointValue,useDisclosure,
+    BreadcrumbItem, Breadcrumb
+} from '@chakra-ui/react';
 /* import Profile from './AuthApp/components/Profile' */
 import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 import AuthContext from '../../../context/auth/AuthContext'
+import Loader from '../../layout/Loader';
 
 export default function DesktopNav () {
 
     const authContext = useContext(AuthContext)
-    const { mensaje, autenticado, registrarUsuario, usuario } = authContext;
+    const { mensaje, autenticado, registrarUsuario, usuario, usuarioAutenticado } = authContext;
 
- 
+    useEffect(() => {
+        usuarioAutenticado()
+    },[])
 
     return (
-        <Stack direction={'row'} spacing={4}>
-            {/* {navItems.map((navItem) => ( */}
+        <Stack direction={'row'} >
+                {/* <Link
+                    colorScheme="black" variant="outline" border='black'
+                    p={2}
+                    to='/vendor'>
+                    Vendedor
+                </Link>
+
+                <Box>
+                                    
+                <Link
+                    colorScheme="black" variant="outline" border='black'
+                    p={2}
+                    to='/purchaser'>
+                Comprador
+                </Link>
 
                 <Link
-                                    colorScheme="black" variant="outline" border='black'
-                                    p={2}
-                                    to='/vendor'>
-                                Vendedor
-                                </Link>
-
-                                <Box>
-                                    
-                                    <Link
-                                        colorScheme="black" variant="outline" border='black'
-                                        p={2}
-                                        to='/purchaser'>
-                                    Comprador
-                                    </Link>
-
-                                    <Link
-                                        colorScheme="black" variant="outline" border='black'
-                                        p={2}
-                                        to='/purchaser/item-list'>
-                                    Lista de Productos
-                                    </Link>
-                                    </Box>
-            <Box >
-                   {/*  {
+                    colorScheme="black" variant="outline" border='black'
+                    p={2}
+                    to='/purchaser/item-list'>
+                Lista de Productos
+                </Link>
+                </Box> */}
+                <Box >
+                    {
                         usuario == null ? '' :
                             usuario.role === 'Admin' ? 
-                                (
-                                    <Box>
-                                    
-                                    <Link
+                                (<Box mt={8} alignItems='center' alignContent='space-around' >
+                                    <Breadcrumb>
+                                    <BreadcrumbItem>
+                                    <NavLink
+                                        style={{fontSize:'21px',paddingRight:'5px', 
+                                                paddingLeft:'5px' ,fontWeight:600,  
+                                                textDecoration:'underline'}}
                                         colorScheme="black" variant="outline" border='black'
-                                        p={2}
-                                        href={'/purchaser'}>
-                                    Comprador
-                                    </Link>
-
-                                    <Link
+                                        href={'/login'}
+                                        to='/purchaser'
+                                    >
+                                        Licitaciones
+                                    </NavLink>
+                                    </BreadcrumbItem>
+                                    <BreadcrumbItem>
+                                    <NavLink
+                                     style={{fontSize:'21px',paddingRight:'5px', 
+                                            paddingLeft:'13px' ,fontWeight:600,  
+                                            textDecoration:'underline'}}
                                         colorScheme="black" variant="outline" border='black'
-                                        p={2}
-                                        href={'/purchaser/item-list'}>
-                                    Lista de Productos
-                                    </Link>
-                                    </Box>
-                                )
-                        :   (
-                                <Link
-                                    colorScheme="black" variant="outline" border='black'
-                                    p={2}
-                                    href={'/vendor'}>
-                                Vendedor
-                                </Link>
-                            )
-                        : ""
-                    } */}
+                                        to='/purchaser/item-list'
+                                    >
+                                        Productos
+                                    </NavLink>
+                                    </BreadcrumbItem>
+                                    </Breadcrumb>
+                                </Box>)
+                            :
+                                (<NavLink
+                                    style={{fontSize:'21px',paddingRight:'5px', 
+                                            paddingLeft:'13px' ,fontWeight:600,  
+                                            textDecoration:'underline'}}
+                                        colorScheme="black" variant="outline" border='black'
+                                    to='/vendor'
+                                >
+                                    Vendedor
+                                </NavLink>)
+                    }
 
 
                     {/* {navItem.children && (

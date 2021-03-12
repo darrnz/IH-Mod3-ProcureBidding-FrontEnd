@@ -13,6 +13,8 @@ import VendorProfile from './UnauthApp/components/VendorProfile/VendorProfile'
 import ListProducts from './UnauthApp/components/Purchaser/ListProducts'
 import TenderDetails from './UnauthApp/components/Purchaser/TenderDetails'
 import MainNav from './UnauthApp/components/NavBar/MainNav';
+import SmallWithLogoLeft from './UnauthApp/components/Footer/SmallWithLogoLeft'
+
 
 export default function App() {
     ////determinar q rutas osn provadas
@@ -20,33 +22,28 @@ export default function App() {
     return (
         <ChakraProvider >
         <CSSReset/>
-        <AuthState>
-        <TenderState>
-        <AlertState>
-    
-            <Router>
+            <AuthState>
+                <TenderState>
+                    <AlertState>
+                        <Router>
 
-        <MainNav />
+                            <MainNav />
+                                <Switch>
+                                    <Route exact path='/login' component={Login}/>
+                                    <Route exact path='/signup' component={Signin}/>
+                                    <Route exact path='/' component={MainPage}/>
 
-                <Switch>
-                    
-                    <Route exact path='/login' component={Login}/>
-                    <Route exact path='/signup' component={Signin}/>
-                    <Route exact path='/' component={MainPage}/>
-
-
-                    <RutaPrivada exact path='/vendor' component={VendorProfile} />
-                    <RutaPrivada  exact path='/purchaser' component={PurchaserProfile} /> 
-                    <RutaPrivada exact path='/tender/:idTender' component={TenderDetails} />
-                    <RutaPrivada exact path='/purchaser/item-list' component={ListProducts} />
-
-                    
-                </Switch>
-                
-            </Router>
-        </AlertState>
-        </TenderState>
-        </AuthState>
+                                    <RutaPrivada exact path='/vendor' component={VendorProfile} />
+                                    <RutaPrivada  exact path='/purchaser' component={PurchaserProfile} /> 
+                                    <RutaPrivada exact path='/tender/:idTender' component={TenderDetails} />
+                                    <RutaPrivada exact path='/purchaser/item-list' component={ListProducts} />
+                                </Switch>
+                            <SmallWithLogoLeft />
+                            
+                        </Router>
+                    </AlertState>
+                </TenderState>
+            </AuthState>
         </ChakraProvider>
     )
 }

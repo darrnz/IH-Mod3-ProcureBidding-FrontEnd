@@ -70,7 +70,7 @@ export default function PurchaserProfile(props) {
                     }
                     
                 </Box>
-                <Box>
+                <Box mb={10}>
                     <ListTenders user={usuario}/>
                 </Box>
                 <Box>
