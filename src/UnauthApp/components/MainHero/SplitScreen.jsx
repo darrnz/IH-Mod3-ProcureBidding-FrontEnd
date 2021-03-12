@@ -48,12 +48,13 @@ import Loader from '../../layout/Loader';
                 rounded={'full'}
                 bg={'blue.400'}
                 color={'white'}
+                href={'/signup'}
                 _hover={{
                   bg: 'blue.500',
                 }}>
                 Inscribete
               </Button>
-              <Button rounded={'full'}>How It Works</Button>
+                
             </Stack>
           </Stack>
         </Flex>
