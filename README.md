@@ -1,7 +1,9 @@
 # Naak' eProcurement
 
 B2B platform that help businesses create tenders to quote and purchase products from vendors without the need of sending a different email to each one of them.
+
 Deploy: https://naak-procurement.netlify.app/
+
 Backend repo: https://github.com/darrnz/IH-Mod3-ProcureBidding-BackEnd
 
 ## Description
