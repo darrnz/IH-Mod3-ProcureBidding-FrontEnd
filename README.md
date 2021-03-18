@@ -10,7 +10,9 @@ Backend repo: https://github.com/darrnz/IH-Mod3-ProcureBidding-BackEnd
 
 Full stack web application, built as my final project of the Ironhack Fulltime Web Development Bootcamp.
 The user is able to signin and Login as a Client or Vendor.
+
 Client: Able to add products to its products list, create, see all details of it's own tenders.
+
 Vendor: Able to see the details of the received tender.
 
 ## Tools 🔧🔧
@@ -33,6 +35,6 @@ Vendor: Able to see the details of the received tender.
 
 ## Status
 
-There will be more faetures, where the Vendors can reply with teir prices and the Client will be able to compare the prices and select the best one.
+There will be more features, where the Vendors can reply with teir prices and the Client will be able to compare the prices and select the best one.
 
 
