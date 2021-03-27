@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Box, Input, Button, Text } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
-import ListTenders from './ListTenders'
+import ListTenders from '../CreatedTender/ListTenders'
 import AddTender from './AddTender'
 import TenderContext from '../../../context/tenders/TenderContext'
 import AuthContext from '../../../context/auth/AuthContext'

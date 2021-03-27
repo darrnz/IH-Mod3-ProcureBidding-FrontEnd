@@ -12,12 +12,12 @@ export default function AddDeleteVendorTender(props) {
             deleteVendorTender, addVendorTender, tenderVendor, } = ctxTender
         
     const [idVendorSet, setIdVendorSet] = useState({})
+
     useEffect(() => {
         
-
-
     }, [tenderVendor,listvendors])
 
+    
     const selectVend = (e, idVendorC) => {
         e.preventDefault()
         addVendorTender(idVendorC)

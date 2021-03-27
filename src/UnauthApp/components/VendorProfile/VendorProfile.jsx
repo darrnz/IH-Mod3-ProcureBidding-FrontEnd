@@ -26,10 +26,6 @@ export default function VendorProfile(props) {
     }
     return (
         <div>
-
-            HolaVendor
-
-
             <Text mt={10} fontSize="3xl">Licitaciones actuales</Text>  
                 <Box mt={5} mx={40} d='flex' flexDir='row' justifyContent='space-around' alignContent='center'>
                     <Table variant="simple">

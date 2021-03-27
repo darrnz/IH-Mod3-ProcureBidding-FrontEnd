@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import TenderContext from '../../../context/tenders/TenderContext'
 import { useParams } from 'react-router-dom'
-import AuthContext from '../../../context/auth/AuthContext'
 import { Box, Text, FormControl, Flex } from '@chakra-ui/react'
+import TenderContext from '../../../context/tenders/TenderContext'
+import AuthContext from '../../../context/auth/AuthContext'
+import TenderDetailsVendor from './TenderDetailsVendor'
+import TenderDetailsPurchaser from './TenderDetailsPurchaser'
 import Loader from '../../layout/Loader'
 export default function TenderDetails(props) {
 
@@ -28,7 +30,13 @@ export default function TenderDetails(props) {
 
     return (
         <>
-            
+            {    usuario == null ? <Loader /> : 
+                        usuario.role === 'Vendor' ? 
+                        <TenderDetailsVendor /> 
+                        : <TenderDetailsPurchaser />
+                }   
+
+{/* 
             <Box as='main' d='flex' alignItems='center' flexDir='column'>
                 <Box as='form' w={1000} mt={15}d='flex' alignItems='center' alignContent='center' bg='white'  boxShadow="lg">
                     <FormControl as='fieldset' border='solid' 
@@ -48,6 +56,12 @@ export default function TenderDetails(props) {
                     </FormControl>
                 </Box>
 
+                {    usuario == null ? <Loader /> : 
+                        usuario.role === 'Vendor' ? 
+                        "" : 'Hola'
+
+
+                }   
 
                 <Box>
                     <Text my={2} fontSize="xl">Productos</Text>
@@ -73,8 +87,7 @@ export default function TenderDetails(props) {
                     </Box>
                 </Box>
 
-                {    usuario == null ? <Loader /> : 
-                        usuario.role === 'Vendor' ? "" :      
+            
                     <Box>
                         <Text mt={3} fontSize="xl">Proveedres</Text>
                         <Box d='flex' h={150}  style={{overflow:'auto'}}  w={900} flexWrap='wrap' alignItems='center'>
@@ -96,9 +109,8 @@ export default function TenderDetails(props) {
                             }
                         </Box>
                     </Box>
-                }
         </Box>
-        
+         */}
     </>
     )
 }

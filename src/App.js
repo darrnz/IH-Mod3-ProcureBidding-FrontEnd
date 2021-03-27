@@ -11,7 +11,7 @@ import MainPage from './UnauthApp/components/MainPage'
 import PurchaserProfile from './UnauthApp/components/Purchaser/PurchaserProfile'
 import VendorProfile from './UnauthApp/components/VendorProfile/VendorProfile'
 import ListProducts from './UnauthApp/components/Purchaser/ListProducts'
-import TenderDetails from './UnauthApp/components/Purchaser/TenderDetails'
+import TenderDetails from './UnauthApp/components/CreatedTender/TenderDetails'
 import MainNav from './UnauthApp/components/NavBar/MainNav';
 import SmallWithLogoLeft from './UnauthApp/components/Footer/SmallWithLogoLeft'
 
