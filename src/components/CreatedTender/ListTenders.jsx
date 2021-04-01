@@ -3,9 +3,9 @@ import React, { useEffect, useContext } from 'react'
 import { Box, Button, Text,
     Table, Thead, Tbody, Tr, Th, Td, } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import TenderContext from '../../../context/tenders/TenderContext'
-import AuthContext from '../../../context/auth/AuthContext'
-import Loader from '../../layout/Loader'
+import TenderContext from '../../context/tenders/TenderContext'
+import AuthContext from '../../context/auth/AuthContext'
+import Loader from '../layout/Loader'
 
 export default function ListTenders(props) {
     

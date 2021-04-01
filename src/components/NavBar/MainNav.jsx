@@ -1,15 +1,16 @@
-
 import React, { useContext, useEffect } from 'react'
-import {
-    Image, Box, Flex, Text,IconButton, Button,Stack,Collapse,Icon, Popover,PopoverTrigger,PopoverContent, 
-    useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
-import { HamburgerIcon,CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { useHistory } from 'react-router-dom'
 import DesktopNav from './DesktopNav'
-import MobileNav from './MobileNav'
-import AuthContext from '../../../context/auth/AuthContext'
-import { Link, useHistory } from 'react-router-dom'
+//import MobileNav from './MobileNav'
+import AuthContext from '../../context/auth/AuthContext'
+import logoMain from '../../images/logo1.png'
+import { Image, Box, Flex, Text,IconButton, Button,Stack,Collapse,
+        Icon, Popover,PopoverTrigger,PopoverContent, 
+        useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon,ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { MdPerson } from 'react-icons/md'
-import logoMain from '../../../images/logo1.png'
+
+
 export default function MainNav(props) {
 
     const { isOpen, onToggle } = useDisclosure();

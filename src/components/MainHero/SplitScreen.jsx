@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Flex, Heading, Image, Stack, Text, useBreakpointValue } from '@chakra-ui/react';
-import imgage from '../../../images/Digital-Procurement-Bank-SIPMM-1280x720.jpg'
-import Loader from '../../layout/Loader';
+import imgage from '../../images/Digital-Procurement-Bank-SIPMM-1280x720.jpg'
+import Loader from '../layout/Loader';
 
   export default function SplitScreen() {
     return (

@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Box, Input, Button, useToast, InputGroup, InputLeftElement, Heading, Image } from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom'
-import AlertaContext from '../../context/alerts/AlertContext'
-import AuthContext from '../../context/auth/AuthContext'
-import logoLog from '../../images/logo final 2.png' 
+import AlertaContext from '../context/alerts/AlertContext'
+import AuthContext from '../context/auth/AuthContext'
+import logoLog from '../images/logo final 2.png' 
 
 export default function Login(props) {
 

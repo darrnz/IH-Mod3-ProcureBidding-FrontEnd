@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import AuthContext from '../../../context/auth/AuthContext'
-import {
-    Box, Table, Thead, Tbody, Tr, Th, Td, Button, Text
-        } from "@chakra-ui/react"
+import AuthContext from '../../context/auth/AuthContext'
+import TenderContext from '../../context/tenders/TenderContext'
 import AddProduct from './AddProduct'
+import Loader from '../layout/Loader'
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Button, Text } from "@chakra-ui/react"
 import { BsPlusCircle } from 'react-icons/bs'
 import { RiCloseCircleLine } from 'react-icons/ri'
-import TenderContext from '../../../context/tenders/TenderContext'
-import Loader from '../../layout/Loader'
 
 
 export default function ListProducts(props) {

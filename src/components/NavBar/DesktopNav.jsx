@@ -5,9 +5,8 @@ import NavItem from './NavItem'
 import { Box, Flex, Text,IconButton, Button,Stack,
         BreadcrumbItem, Breadcrumb
 } from '@chakra-ui/react';
-
-import AuthContext from '../../../context/auth/AuthContext'
-import Loader from '../../layout/Loader';
+import AuthContext from '../../context/auth/AuthContext'
+import Loader from '../layout/Loader';
 
 export default function DesktopNav () {
 

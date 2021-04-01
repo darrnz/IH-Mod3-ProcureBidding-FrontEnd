@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Box, Text, FormControl, Flex } from '@chakra-ui/react'
-import TenderContext from '../../../context/tenders/TenderContext'
-import AuthContext from '../../../context/auth/AuthContext'
+import TenderContext from '../../context/tenders/TenderContext'
+import AuthContext from '../../context/auth/AuthContext'
 import TenderDetailsVendor from './TenderDetailsVendor'
 import TenderDetailsPurchaser from './TenderDetailsPurchaser'
-import Loader from '../../layout/Loader'
-export default function TenderDetails(props) {
+import Loader from '../layout/Loader'
+
+export default function TenderDetails() {
 
     const authContext = useContext(AuthContext)
     const { usuario, usuarioAutenticado } = authContext;
@@ -19,9 +19,6 @@ export default function TenderDetails(props) {
     useEffect( ()  => {
         tenderDetails(idTender)
         }, [])
-    
-    let products = tenderInfo['tenderProducts']
-    let vendors = tenderInfo['idVendor']
     
     if(usuario == null) {
         return(<Loader />)

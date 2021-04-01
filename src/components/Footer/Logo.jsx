@@ -1,9 +1,6 @@
-import {
-  chakra,
-  Img,
-} from '@chakra-ui/react';
+import { chakra, Img, } from '@chakra-ui/react';
 import React  from 'react';
-import logoMain from '../../../images/logo1.png'
+import logoMain from '../../images/logo1.png'
 
 
 export default function Logo (props) {

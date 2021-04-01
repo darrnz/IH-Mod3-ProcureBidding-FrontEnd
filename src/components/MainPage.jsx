@@ -1,5 +1,5 @@
 import React from 'react'
-import SplitScreen from './MainHero/SplitScreen'
+import SplitScreen from '../components/MainHero/SplitScreen'
 
 export default function MainPage() {
     return (

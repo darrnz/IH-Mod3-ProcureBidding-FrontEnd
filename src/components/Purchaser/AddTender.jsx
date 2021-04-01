@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useContext } from 'react'
 import { Box, Input, Button, Text, Flex, Spacer,
     FormControl,FormLabel } from '@chakra-ui/react'
 import AddDeleteProdTender from './AddDeleteProdTender'
-import TenderContext from '../../../context/tenders/TenderContext'
+import TenderContext from '../../context/tenders/TenderContext'
 import AddDeleteVendorTender from './AddDeleteVendorTender'
-import AuthContext from '../../../context/auth/AuthContext'
+import AuthContext from '../../context/auth/AuthContext'
 
 export default function AddTender(props) {
 
@@ -42,7 +41,7 @@ export default function AddTender(props) {
         })
         
     }
-  
+    
     const submitCreteTender = (e) => {
         
         e.preventDefault()

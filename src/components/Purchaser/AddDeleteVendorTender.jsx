@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Box, Button, Text, Grid,
-        List, ListItem, ListIcon, OrderedList, Spacer } from '@chakra-ui/react'
+import { Box, Button, Text, Grid, ListItem, OrderedList, Spacer } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
-import TenderContext from '../../../context/tenders/TenderContext'
+import TenderContext from '../../context/tenders/TenderContext'
 
 export default function AddDeleteVendorTender(props) { 
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import AuthContext from '../../../context/auth/AuthContext'
-import TenderContext from '../../../context/tenders/TenderContext'
+import AuthContext from '../../context/auth/AuthContext'
+import TenderContext from '../../context/tenders/TenderContext'
 import { Box, Button, Text,
     Table, Thead, Tbody, Tr, Th, Td, } from '@chakra-ui/react'
     import { Link } from 'react-router-dom'

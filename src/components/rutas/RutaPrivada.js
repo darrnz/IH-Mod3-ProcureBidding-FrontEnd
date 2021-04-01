@@ -1,7 +1,7 @@
 
 import React, { Component, useContext, useEffect } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import AuthContext from '../../../context/auth/AuthContext'
+import AuthContext from '../../context/auth/AuthContext'
 
 export default function RutaPrivada ( { component: Component,...props } ) {
     

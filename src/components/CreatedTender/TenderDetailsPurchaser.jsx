@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
-import TenderContext from '../../../context/tenders/TenderContext'
+import TenderContext from '../../context/tenders/TenderContext'
 import { useParams } from 'react-router-dom'
-import AuthContext from '../../../context/auth/AuthContext'
+import AuthContext from '../../context/auth/AuthContext'
 import { Box, Text, FormControl, Flex } from '@chakra-ui/react'
-import Loader from '../../layout/Loader'
+import Loader from '../layout/Loader'
 export default function TenderDetails(props) {
 
     const authContext = useContext(AuthContext)

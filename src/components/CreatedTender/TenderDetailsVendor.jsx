@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import TenderContext from '../../../context/tenders/TenderContext'
+import TenderContext from '../../context/tenders/TenderContext'
 import { useParams } from 'react-router-dom'
-import AuthContext from '../../../context/auth/AuthContext'
+import AuthContext from '../../context/auth/AuthContext'
 import { Box, Text, FormControl, Flex, Grid, GridItem, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
-import Loader from '../../layout/Loader'
+import Loader from '../layout/Loader'
 import { set } from 'mongoose'
 export default function TenderDetails(props) {
 
@@ -51,7 +51,7 @@ export default function TenderDetails(props) {
             uom: elem.uom,
             skuVendor: elem.skuVendor,
             price: event.target.value,
-            totalProduct: parseFloat(event.target.value) * elem.quantity
+            totalProduct: (parseFloat(event.target.value) * elem.quantity).toFixed(2)
             }
         calculateQuoteTotal()
         setQuotedProducts( quotedProducts )
@@ -73,7 +73,7 @@ export default function TenderDetails(props) {
 
     const calculateQuoteTotal = () => {
         let total = Object.keys(quotedProducts).map(key => quotedProducts[key].totalProduct).reduce((a,b)=> a+b)
-        console.log(total)
+        
         setQuoteTotal(total)
         console.log(quoteTotal)
     }

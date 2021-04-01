@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState, useContext } from 'react'
-import { Box, Input, Button, Text, FormControl, FormLabel, Select} from '@chakra-ui/react'
-import clienteAxios from '../../../services/axios'
-import AuthContext from '../../../context/auth/AuthContext'
-import TenderContext from '../../../context/tenders/TenderContext'
+import { Box, Input, Button, Text, FormControl, FormLabel, Select } from '@chakra-ui/react'
+import clienteAxios from '../../services/axios'
+import AuthContext from '../../context/auth/AuthContext'
+import TenderContext from '../../context/tenders/TenderContext'
 
 
 export default function AddProduct(props) {
@@ -43,7 +42,7 @@ export default function AddProduct(props) {
 
     const onClickAdd = async ( e ) => {
         e.preventDefault()
-       
+        
         let createdProd = await clienteAxios.post('/create-product', newProduct)
         addProdToList(createdProd.data)
         setNewProduct({

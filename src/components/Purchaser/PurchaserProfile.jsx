@@ -1,12 +1,14 @@
 import React, { useContext, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Box, Input, Button, Text } from '@chakra-ui/react'
 import ListProducts from './ListProducts'
-import ListTenders from '../CreatedTender/ListTenders'
+import ListTenders from '../../components/CreatedTender/ListTenders'
 import AddTender from './AddTender'
-import TenderContext from '../../../context/tenders/TenderContext'
-import AuthContext from '../../../context/auth/AuthContext'
-import Loader from '../../layout/Loader'
-import { useHistory } from 'react-router-dom'
+import Loader from '../layout/Loader'
+import TenderContext from '../../context/tenders/TenderContext'
+import AuthContext from '../../context/auth/AuthContext'
+
+
 
 export default function PurchaserProfile(props) {
 
@@ -17,7 +19,7 @@ export default function PurchaserProfile(props) {
 
     const history = useHistory()
     const authContext = useContext(AuthContext)
-    const { usuario, usuarioAutenticado } = authContext;
+    const { usuario } = authContext;
 
  
     useEffect(() => {

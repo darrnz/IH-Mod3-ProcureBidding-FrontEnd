@@ -3,9 +3,9 @@ import { Box, Input, Button, Radio, RadioGroup,  useToast, Heading, Text,
     FormControl, FormLabel, HStack, Image
 } from '@chakra-ui/react'
 import { Link, useHistory, Redirect } from 'react-router-dom'
-import logoLog from '../../images/logo final 2.png' 
-import AlertaContext from '../../context/alerts/AlertContext.js'
-import AuthContext from '../../context/auth/AuthContext'
+import logoLog from '../images/logo final 2.png' 
+import AlertaContext from '../context/alerts/AlertContext.js'
+import AuthContext from '../context/auth/AuthContext'
 
 
 export default function Signin(props) {
