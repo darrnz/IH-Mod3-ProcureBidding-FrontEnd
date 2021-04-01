@@ -14,6 +14,7 @@ export default function TenderDetails(props) {
     const { tenderDetails, tenderInfo, tenderProds, tenderVendor } = context
     let { idTender } = useParams()
 
+    const [quoteTotal, setQuoteTotal] = useState(0)
     let [quotedProducts, setQuotedProducts] = useState(
         [{
             quantity:'',
@@ -27,6 +28,7 @@ export default function TenderDetails(props) {
         }]
     )
     console.log(quotedProducts)
+
     
     useEffect( ()  => {
         tenderDetails(idTender)
@@ -51,8 +53,8 @@ export default function TenderDetails(props) {
             price: event.target.value,
             totalProduct: parseFloat(event.target.value) * elem.quantity
             }
+        calculateQuoteTotal()
         setQuotedProducts( quotedProducts )
-
         
         console.log(quotedProducts)      
     }
@@ -61,19 +63,28 @@ export default function TenderDetails(props) {
         //event.preventDefault()
         let elemPrice = quotedProducts.find((e,index,arr) => {
             if(arr.indexOf(e) === i){
-                return e.price   
+                return e.totalProduct   
             }
             
         })
         
         return elemPrice * qty
     }
+
+    const calculateQuoteTotal = () => {
+        let total = Object.keys(quotedProducts).map(key => quotedProducts[key].totalProduct).reduce((a,b)=> a+b)
+        console.log(total)
+        setQuoteTotal(total)
+        console.log(quoteTotal)
+    }
+    console.log(quoteTotal)
+    
     
 
     return (
         <>
             
-            <Box as='main' d='flex' alignItems='center' flexDir='column'>
+            <Box as='main' d='flex' alignItems='center' flexDir='column' h='100%' my={10}>
                 {/* Tender General info */}
                 <Box as='form' w={1000} mt={15}d='flex' alignItems='center' alignContent='center' bg='white'  boxShadow="lg">
                     <FormControl as='fieldset' border='solid' 
@@ -96,16 +107,15 @@ export default function TenderDetails(props) {
 
                 <Box>
                     <Text my={2} fontSize="xl">Productos</Text>
-                    <Box d='flex' h={200}  style={{overflow:'auto'}}  w={900} flexWrap='wrap' alignItems='center'>
+                    <Box d='flex'  w={1000} flexWrap='wrap' alignItems='center'>
                         {  
-                            <Box d='flex' h={150}    w='auto' alignItems='center'>
-                            <Grid templateColumns="1fr 2fr 1fr 1fr 1fr 1fr" style={{overflow:'auto'}} templateRows='1fr'>
-                                <Box w="100%" h="10">Id Empresa</Box>
-                                <Box w="100%" h="10">Productos</Box>
-                                <Box w="100%" h="10">Cantidad</Box>
-                                <Box w="100%" h="10">UDM</Box>
-                                <Box w="100%" h="10">Precio</Box>
-                                <Box w="100%" h="10">Total</Box>
+                            <Grid mt={5} templateColumns="1fr 2fr 1fr 1fr 1fr 1fr" templateRows='1fr'>
+                                <GridItem w="100%" h="20">Id Empresa</GridItem>
+                                <GridItem w="100%" h="20">Productos</GridItem>
+                                <GridItem w="100%" h="20">Cantidad</GridItem>
+                                <GridItem w="100%" h="20">UDM</GridItem>
+                                <GridItem w="100%" h="20">Precio x UND (MXN)</GridItem>
+                                <GridItem w="100%" h="20">Total</GridItem>
                             {   products == null ? <Loader/> : 
                                 products.map((e,id )=> {
                                 return(
@@ -117,15 +127,16 @@ export default function TenderDetails(props) {
                                         <GridItem mb={2} borderBottomColor='lightslategray' borderBottomWidth='thin'>{e.quantity}</GridItem>
                                         <GridItem mb={2} borderBottomColor='lightslategray' borderBottomWidth='thin'>{e.uom}</GridItem>
                                         <GridItem  mb={2} borderBottomColor='lightslategray' borderBottomWidth='thin'>
-                                            <InputGroup>
+                                            <InputGroup mx={2} mb={2}>
                                             <InputLeftAddon children="$MXN" fontSize='small' />
                                                 <Input  id={`price_${id}`} type='number' defaultValue={0} name='price' onChange={(event) => onChangeHandle(event, id, e)}/>
                                             </InputGroup>
                                         </GridItem>
                                         <GridItem  mb={2} borderBottomColor='lightslategray' borderBottomWidth='thin'>
-                                            <InputGroup>
-                                            <InputLeftAddon children="$MXN" fontSize='small' /> 
-                                            <Input  id={`price_${id}`} type='number' defaultValue={quotedProducts[id].totalProduct} name='price' />
+                                            <InputGroup mx={1} mb={2}>
+                                            <InputLeftAddon children="$MXN" fontSize='small'/> 
+                                            <Input  id={`price_${id}`} type='number'  name='totalProduct' 
+                                                value={quotedProducts.find((el,i,arr) => arr.indexOf(el) === id) === undefined ? '0' : quotedProducts.find((el,i,arr) => arr.indexOf(el) === id).totalProduct} />
                                             </InputGroup>
                                         </GridItem>                                        
                                         
@@ -133,10 +144,13 @@ export default function TenderDetails(props) {
                                     )    
                                 }) 
                             }
+                            <GridItem colSpan={6}  pr={5} textAlign='right' fontSize='large' fontWeight='bold'>Total: ${quoteTotal} MXN</GridItem>
+                            
                             </Grid>  
-                            </Box>
+                            
                             
                             }
+                            
                     </Box>
                 </Box>
 

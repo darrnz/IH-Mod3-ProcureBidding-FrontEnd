@@ -25,7 +25,7 @@ export default function VendorProfile(props) {
         history.push('/purchaser')
     }
     return (
-        <div>
+        <Box maxH='auto'>
             <Text mt={10} fontSize="3xl">Licitaciones actuales</Text>  
                 <Box mt={5} mx={40} d='flex' flexDir='row' justifyContent='space-around' alignContent='center'>
                     <Table variant="simple">
@@ -61,6 +61,6 @@ export default function VendorProfile(props) {
                 </Tbody>
                 </Table>
             </Box>
-        </div>
+        </Box>
     )
 }

@@ -1,13 +1,6 @@
-import {
-    Box,
-    chakra,
-    Container,
-    Stack,
-    Text,
-    useColorModeValue,
-  } from '@chakra-ui/react';
+import React from 'react'; 
+import { Box, chakra, Container, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { FaTwitter } from 'react-icons/fa';
-import React from 'react';    
 import Logo from './Logo';
 import SocialButton from './SocialButton '
 
@@ -15,8 +8,10 @@ export default function SmallWithLogoLeft() {
     return (
       <Box
         bg={useColorModeValue('gray.50', 'gray.900')}
-        color={useColorModeValue('gray.700', 'gray.200')}>
+        color={useColorModeValue('gray.700', 'gray.200')}
+        botton={0}
         
+        >
         <Container
           as={Stack}
           maxW={'6xl'}

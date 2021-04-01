@@ -27,7 +27,6 @@ export default function App() {
                 <TenderState>
                     <AlertState>
                         <Router>
-
                             <MainNav />
                                 <Switch>
                                     <Route exact path='/login' component={Login}/>
