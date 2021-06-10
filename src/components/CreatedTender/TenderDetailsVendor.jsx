@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import AuthContext from '../../context/auth/AuthContext'
 import { Box, Text, FormControl, Flex, Grid, GridItem, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react'
 import Loader from '../layout/Loader'
-import { set } from 'mongoose'
+
 export default function TenderDetails(props) {
 
     const authContext = useContext(AuthContext)
