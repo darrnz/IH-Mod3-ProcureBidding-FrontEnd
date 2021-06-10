@@ -8,10 +8,10 @@ import Loader from '../layout/Loader'
 export default function TenderDetails(props) {
 
     const authContext = useContext(AuthContext)
-    const { usuario, usuarioAutenticado } = authContext;
+    const { usuario } = authContext;
 
     const context = useContext(TenderContext)
-    const { tenderDetails, tenderInfo, tenderProds, tenderVendor } = context
+    const { tenderDetails, tenderInfo } = context
     let { idTender } = useParams()
 
     const [quoteTotal, setQuoteTotal] = useState(0)
@@ -72,7 +72,7 @@ export default function TenderDetails(props) {
     }
 
     const calculateQuoteTotal = () => {
-        let total = Object.keys(quotedProducts).map(key => quotedProducts[key].totalProduct).reduce((a,b)=> a+b)
+        let total = Object.keys(quotedProducts).map(key => quotedProducts[key].totalProduct).reduce((a,b)=> parseFloat(a)+parseFloat(b))
         
         setQuoteTotal(total)
         console.log(quoteTotal)
