@@ -1,19 +1,20 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import TenderState from './context/tenders/TenderState'
 import AuthState from './context/auth/AuthState'
 import AlertState from './context/alerts/AlertState'
-import RutaPrivada from './UnauthApp/components/rutas/RutaPrivada'
+import RutaPrivada from './components/rutas/RutaPrivada'
 import { ThemeProvider, theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
-import Login from './UnauthApp/components/Login'
-import Signin from './UnauthApp/components/Signin'
-import MainPage from './UnauthApp/components/MainPage'
-import PurchaserProfile from './UnauthApp/components/Purchaser/PurchaserProfile'
-import VendorProfile from './UnauthApp/components/VendorProfile/VendorProfile'
-import ListProducts from './UnauthApp/components/Purchaser/ListProducts'
-import TenderDetails from './UnauthApp/components/Purchaser/TenderDetails'
-import MainNav from './UnauthApp/components/NavBar/MainNav';
-import SmallWithLogoLeft from './UnauthApp/components/Footer/SmallWithLogoLeft'
+import Login from './components/Login'
+import Signin from './components/Signin'
+import MainPage from './components/MainPage'
+import PurchaserProfile from './components/Purchaser/PurchaserProfile'
+import VendorProfile from './components/VendorProfile/VendorProfile'
+import ListProducts from './components/Purchaser/ListProducts'
+import TenderDetails from './components/CreatedTender/TenderDetails'
+import MainNav from './components/NavBar/MainNav';
+import SmallWithLogoLeft from './components/Footer/SmallWithLogoLeft'
 
 
 export default function App() {
@@ -26,7 +27,6 @@ export default function App() {
                 <TenderState>
                     <AlertState>
                         <Router>
-
                             <MainNav />
                                 <Switch>
                                     <Route exact path='/login' component={Login}/>
